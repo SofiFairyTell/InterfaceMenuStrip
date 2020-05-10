@@ -49,6 +49,7 @@
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.AddButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +81,7 @@
             this.ввестиСКлавиатурыToolStripMenuItem.Name = "ввестиСКлавиатурыToolStripMenuItem";
             this.ввестиСКлавиатурыToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.ввестиСКлавиатурыToolStripMenuItem.Text = "Ввести с клавиатуры";
+            this.ввестиСКлавиатурыToolStripMenuItem.Click += new System.EventHandler(this.ввестиСКлавиатурыToolStripMenuItem_Click);
             // 
             // автоматическиToolStripMenuItem
             // 
@@ -214,6 +216,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(31, 45);
             this.dataGridView2.Name = "dataGridView2";
@@ -222,11 +225,22 @@
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(31, 394);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(228, 44);
+            this.AddButton.TabIndex = 2;
+            this.AddButton.Text = "Записать данные";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // MenuStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -265,6 +279,7 @@
         private System.Windows.Forms.ToolStripMenuItem поНомеруСтолбцаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выбранныхМассивовToolStripMenuItem;
         internal System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button AddButton;
     }
 }
 

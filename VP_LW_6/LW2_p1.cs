@@ -86,10 +86,24 @@ namespace ArrIntSpace
                     for (int j = 0; j < m; j++)
                     {
                       //  Console.Write("Элемент[{0}][{1}]", i, j);
-                    IntArr[i, j] = 3;
+                    IntArr[i, j] = i*5-j;
                 }
                 }
             }
+        public void InputArray(int data, int i, int j )
+            {
+                // for (int i = 0; i < n; i++)
+                // {
+                //     for (int j = 0; j < m; j++)
+                //     {
+                      //  Console.Write("Элемент[{0}][{1}]", i, j);
+                    IntArr[i, j] = data;
+              //  }
+                //}
+            }
+
+
+
             //вывод массива
         public int ShowArray()
             {

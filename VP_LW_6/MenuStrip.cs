@@ -16,7 +16,13 @@ namespace VP_LW_6
 {
     public partial class MenuStrip : Form
     {
-       // private DataGridView dataGridView1;
+       static int n = 2;
+       static int m = 2;
+        Collection<ArrInt> ArrInt1 = new Collection<ArrInt>();
+        ArrInt Arr = new ArrInt(n, m);
+
+
+        // private DataGridView dataGridView1;
         private void DataGridViewInitialize() // Making our DataGrid
         {
             dataGridView2.ColumnCount = 2; // Column Count
@@ -24,9 +30,9 @@ namespace VP_LW_6
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            dataGridView2.Columns[0].Name = "Chart 1";
-            dataGridView2.Columns[1].Name = "Chart 2";
-            dataGridView2.Columns[2].Name = "Chart 3";
+            dataGridView2.Columns[0].Name = "Элемент 1";
+            dataGridView2.Columns[1].Name = "Элемент 2";
+            dataGridView2.Columns[2].Name = "Элемент 3";
             // Defining rows
             string[] row1 = new string[] { "0" };
             string[] row2 = new string[] { "0" };
@@ -56,7 +62,7 @@ namespace VP_LW_6
        
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Добро пожаловть в программу!","О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,18 +122,8 @@ namespace VP_LW_6
 
         private void поНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //int n = dataGridView2.RowCount;
-            //int m = dataGridView2.ColumnCount;
-            int n = 2;
-            int m = 2;
-            Collection<ArrInt> ArrInt1 = new Collection<ArrInt>();
-            ArrInt Arr = new ArrInt(n, m);
-
-            Arr.InputArray();
-            ArrInt1.Add(Arr);
             int i = 0;
- 
-            if (dataGridView2.ColumnCount < ArrInt1.Count)
+             if (dataGridView2.ColumnCount < ArrInt1.Count)
             {
                 dataGridView2.ColumnCount = ArrInt1.Count;
             }
@@ -136,6 +132,57 @@ namespace VP_LW_6
                dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
                i++;
             }
+        }
+
+
+        private void CheckRowCount(int MaxRows)
+        {
+            //int MaxRows = 2;
+            if (dataGridView2.Rows.Count <= MaxRows)
+            {
+                dataGridView2.AllowUserToAddRows = true;
+            }
+            else
+            {
+                dataGridView2.AllowUserToAddRows = false;
+            }
+        }
+
+        private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //dataGridView2.ColumnCount = 2; // Column Count
+            //dataGridView2.RowCount = 2;
+            DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
+            columnStyle.BackColor = Color.Azure;
+            columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            int MaxRows = 3;
+            dataGridView2.Columns.Add("A1", "Столбец 1");
+            dataGridView2.Columns.Add("A2", "Столбец 2");
+            if (dataGridView2.Rows.Count < MaxRows)
+            {
+                dataGridView2.AllowUserToAddRows = true;
+                dataGridView2.Rows.Add();
+                //dataGridView2.Rows.Clear();
+                // CheckRowCount(MaxRows);
+            }
+            else
+            {
+                dataGridView2.AllowUserToAddRows = false;
+            }
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+                    //  ArrInt Arr = new ArrInt(n, m);
+
+            for (int i = 0; i < dataGridView2.RowCount-1; i++)
+            {
+                for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                {
+                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value),i,j);
+                }
+            }
+             ArrInt1.Add(Arr);
         }
     }
 }
