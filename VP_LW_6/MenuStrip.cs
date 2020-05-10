@@ -25,24 +25,41 @@ namespace VP_LW_6
         // private DataGridView dataGridView1;
         private void DataGridViewInitialize() // Making our DataGrid
         {
-            dataGridView2.ColumnCount = 2; // Column Count
-            dataGridView2.RowCount = 2;
+            //dataGridView2.ColumnCount = 2; // Column Count
+            //dataGridView2.RowCount = 2;
+            //DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
+            //columnStyle.BackColor = Color.Azure;
+            //columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            //dataGridView2.Columns[0].Name = "Элемент 1";
+            //dataGridView2.Columns[1].Name = "Элемент 2";
+            //dataGridView2.Columns[2].Name = "Элемент 3";
+            //// Defining rows
+            //string[] row1 = new string[] { "0" };
+            //string[] row2 = new string[] { "0" };
+            //string[] row3 = new string[] { "0" };
+            //object[] rows = new object[] { row1, row2, row3 }; // Storing all rows inside of an array
+            ////Adding rows
+            //foreach (string[] rowArray in rows)
+            //{
+            //    dataGridView2.Rows.Add(rowArray);
+            //}
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            dataGridView2.Columns[0].Name = "Элемент 1";
-            dataGridView2.Columns[1].Name = "Элемент 2";
-            dataGridView2.Columns[2].Name = "Элемент 3";
-            // Defining rows
-            string[] row1 = new string[] { "0" };
-            string[] row2 = new string[] { "0" };
-            string[] row3 = new string[] { "0" };
-            object[] rows = new object[] { row1, row2, row3 }; // Storing all rows inside of an array
-            //Adding rows
-            foreach (string[] rowArray in rows)
-            {
-                dataGridView2.Rows.Add(rowArray);
-            }
+            int MaxRows = 3;
+            dataGridView2.Columns.Add("A1", "Столбец 1");
+            dataGridView2.Columns.Add("A2", "Столбец 2");
+            dataGridView2.AllowUserToAddRows = false;
+            //if (dataGridView2.Rows.Count < MaxRows)
+            //{
+            //    dataGridView2.AllowUserToAddRows = true;
+            //    dataGridView2.Rows.Add();
+            //}
+            //else
+            //{
+            //    dataGridView2.AllowUserToAddRows = false;
+            //}
+
         }
 
 
@@ -67,7 +84,7 @@ namespace VP_LW_6
 
         private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowBox.Text = "Массив 1:\n" + Arr.ToString();
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,6 +139,8 @@ namespace VP_LW_6
 
         private void поНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewInitialize();
+
             int i = 0;
              if (dataGridView2.ColumnCount < ArrInt1.Count)
             {
@@ -129,8 +148,11 @@ namespace VP_LW_6
             }
             foreach (ArrInt arr in ArrInt1)
             {
-               dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
-               i++;
+                int selrow = dataGridView2.SelectedCells[i].RowIndex;
+                // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
+                int Sum = arr.Sum_Column(selrow);
+                MessageBox.Show(Convert.ToString(Sum));
+                i++;
             }
         }
 
@@ -152,23 +174,8 @@ namespace VP_LW_6
         {
             //dataGridView2.ColumnCount = 2; // Column Count
             //dataGridView2.RowCount = 2;
-            DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
-            columnStyle.BackColor = Color.Azure;
-            columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            int MaxRows = 3;
-            dataGridView2.Columns.Add("A1", "Столбец 1");
-            dataGridView2.Columns.Add("A2", "Столбец 2");
-            if (dataGridView2.Rows.Count < MaxRows)
-            {
-                dataGridView2.AllowUserToAddRows = true;
-                dataGridView2.Rows.Add();
-                //dataGridView2.Rows.Clear();
-                // CheckRowCount(MaxRows);
-            }
-            else
-            {
-                dataGridView2.AllowUserToAddRows = false;
-            }
+            DataGridViewInitialize();
+            dataGridView2.AllowUserToAddRows = true;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -183,6 +190,9 @@ namespace VP_LW_6
                 }
             }
              ArrInt1.Add(Arr);
+            dataGridView2.Rows.Clear();
+            dataGridView2.Columns.Clear();
+            dataGridView2.AllowUserToAddRows = false;
         }
     }
 }

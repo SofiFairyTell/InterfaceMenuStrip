@@ -50,6 +50,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.AddButton = new System.Windows.Forms.Button();
+            this.ShowBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +74,7 @@
             this.ввестиСКлавиатурыToolStripMenuItem,
             this.автоматическиToolStripMenuItem});
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.создатьToolStripMenuItem.Text = "Создать";
             // 
             // ввестиСКлавиатурыToolStripMenuItem
@@ -92,35 +93,35 @@
             // просмотретьToolStripMenuItem
             // 
             this.просмотретьToolStripMenuItem.Name = "просмотретьToolStripMenuItem";
-            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.просмотретьToolStripMenuItem.Text = "Просмотреть";
             this.просмотретьToolStripMenuItem.Click += new System.EventHandler(this.просмотретьToolStripMenuItem_Click);
             // 
             // редактироватьToolStripMenuItem
             // 
             this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
-            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
             this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // выгрузитьToolStripMenuItem
             // 
             this.выгрузитьToolStripMenuItem.Name = "выгрузитьToolStripMenuItem";
-            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.выгрузитьToolStripMenuItem.Text = "Выгрузить";
             this.выгрузитьToolStripMenuItem.Click += new System.EventHandler(this.выгрузитьToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -221,7 +222,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(31, 45);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(381, 249);
+            this.dataGridView2.Size = new System.Drawing.Size(264, 292);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -235,11 +236,20 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
+            // ShowBox
+            // 
+            this.ShowBox.Location = new System.Drawing.Point(352, 45);
+            this.ShowBox.Multiline = true;
+            this.ShowBox.Name = "ShowBox";
+            this.ShowBox.Size = new System.Drawing.Size(374, 43);
+            this.ShowBox.TabIndex = 3;
+            // 
             // MenuStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShowBox);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.menuStrip1);
@@ -280,6 +290,7 @@
         private System.Windows.Forms.ToolStripMenuItem выбранныхМассивовToolStripMenuItem;
         internal System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.TextBox ShowBox;
     }
 }
 
