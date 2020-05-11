@@ -25,24 +25,6 @@ namespace VP_LW_6
         // private DataGridView dataGridView1;
         private void DataGridViewInitialize() // Making our DataGrid
         {
-            //dataGridView2.ColumnCount = 2; // Column Count
-            //dataGridView2.RowCount = 2;
-            //DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
-            //columnStyle.BackColor = Color.Azure;
-            //columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            //dataGridView2.Columns[0].Name = "Элемент 1";
-            //dataGridView2.Columns[1].Name = "Элемент 2";
-            //dataGridView2.Columns[2].Name = "Элемент 3";
-            //// Defining rows
-            //string[] row1 = new string[] { "0" };
-            //string[] row2 = new string[] { "0" };
-            //string[] row3 = new string[] { "0" };
-            //object[] rows = new object[] { row1, row2, row3 }; // Storing all rows inside of an array
-            ////Adding rows
-            //foreach (string[] rowArray in rows)
-            //{
-            //    dataGridView2.Rows.Add(rowArray);
-            //}
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
@@ -50,24 +32,13 @@ namespace VP_LW_6
             dataGridView2.Columns.Add("A1", "Столбец 1");
             dataGridView2.Columns.Add("A2", "Столбец 2");
             dataGridView2.AllowUserToAddRows = false;
-            //if (dataGridView2.Rows.Count < MaxRows)
-            //{
-            //    dataGridView2.AllowUserToAddRows = true;
-            //    dataGridView2.Rows.Add();
-            //}
-            //else
-            //{
-            //    dataGridView2.AllowUserToAddRows = false;
-            //}
-
         }
 
 
         public MenuStrip()
         {
             InitializeComponent();
-            string Arr_file;
-            
+            string Arr_file;        
         }
         
         private void MenuStrip_Load(object sender, EventArgs e)
@@ -84,8 +55,6 @@ namespace VP_LW_6
 
         private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ShowBox.Text = "Массив 1:\n" + Arr.ToString();
-            ArrInt arr = new ArrInt(n, m);
             int i = 0;
             ShowBox.Clear();
             foreach (ArrInt ar in ArrInt1)
@@ -93,7 +62,6 @@ namespace VP_LW_6
                 ShowBox.Text += "Массив:" + i + ar.ToString()+"\n";
                 i++;          
             }
-                //ShowBox.Text = ArrInt1.ToString();
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,8 +135,6 @@ namespace VP_LW_6
 
         private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //dataGridView2.ColumnCount = 2; // Column Count
-            //dataGridView2.RowCount = 2;
             DataGridViewInitialize();
             dataGridView2.AllowUserToAddRows = true;
         }
