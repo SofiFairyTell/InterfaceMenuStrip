@@ -18,7 +18,7 @@ namespace VP_LW_6
     {
        static int n = 2;
        static int m = 2;
-        Collection<ArrInt> ArrInt1 = new Collection<ArrInt>();
+        List<ArrInt> ArrInt1 = new List<ArrInt>();
         ArrInt Arr = new ArrInt(n, m);
 
 
@@ -79,12 +79,21 @@ namespace VP_LW_6
        
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Добро пожаловть в программу!","О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Добро пожаловaть в программу!","О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowBox.Text = "Массив 1:\n" + Arr.ToString();
+            //ShowBox.Text = "Массив 1:\n" + Arr.ToString();
+            ArrInt arr = new ArrInt(n, m);
+            int i = 0;
+            ShowBox.Clear();
+            foreach (ArrInt ar in ArrInt1)
+            {
+                ShowBox.Text += "Массив:" + i + ar.ToString()+"\n";
+                i++;          
+            }
+                //ShowBox.Text = ArrInt1.ToString();
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,20 +165,6 @@ namespace VP_LW_6
             }
         }
 
-
-        private void CheckRowCount(int MaxRows)
-        {
-            //int MaxRows = 2;
-            if (dataGridView2.Rows.Count <= MaxRows)
-            {
-                dataGridView2.AllowUserToAddRows = true;
-            }
-            else
-            {
-                dataGridView2.AllowUserToAddRows = false;
-            }
-        }
-
         private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //dataGridView2.ColumnCount = 2; // Column Count
@@ -180,8 +175,7 @@ namespace VP_LW_6
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-                    //  ArrInt Arr = new ArrInt(n, m);
-
+            ArrInt Arr = new ArrInt(n, m);
             for (int i = 0; i < dataGridView2.RowCount-1; i++)
             {
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
@@ -189,10 +183,13 @@ namespace VP_LW_6
                     Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value),i,j);
                 }
             }
-             ArrInt1.Add(Arr);
+            this.ArrInt1.Add(Arr);
+            ArrInt1.Count();                
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
             dataGridView2.AllowUserToAddRows = false;
         }
+
+
     }
 }

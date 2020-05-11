@@ -105,21 +105,7 @@ namespace ArrIntSpace
 
 
             //вывод массива
-        public int ShowArray()
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    for (int j = 0; j < m; j++)
-                    {
-                    return IntArr[i, j];
-                    //Console.Write("[{0}][{1}]={2}", i, j, );
-                    //    Console.WriteLine();
-   
-                }
-                }
-            return 0;
-            }
-        public int ShowArray(int i, int j)
+         public int ShowArray(int i, int j)
         {
              return IntArr[i, j];
                     //Console.Write("[{0}][{1}]={2}", i, j, );
