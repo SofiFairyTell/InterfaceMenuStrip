@@ -105,12 +105,31 @@ namespace ArrIntSpace
 
 
             //вывод массива
-         public int ShowArray(int i, int j)
+         //public int ShowArray(int i, int j)
+         //   {
+         //    return IntArr[i, j];
+         //           //Console.Write("[{0}][{1}]={2}", i, j, );
+         //          //    Console.WriteLine();
+         //   }
+
+        public int ShowArray(int p, int L)
         {
-             return IntArr[i, j];
-                    //Console.Write("[{0}][{1}]={2}", i, j, );
-                   //    Console.WriteLine();
-       }
+            int m = 2;
+            int n = 2;
+            int[] Odnomer = new int[L];
+            int k = 0;
+            for (int i=0; i<n;i++)
+            {
+                for (int j=0; j<m; j++)
+                {
+                   Odnomer[k] = IntArr[i,j];
+                   k++;
+                }
+            }
+            return Odnomer[p];
+            //Console.Write("[{0}][{1}]={2}", i, j, );
+            //    Console.WriteLine();
+        }
         //вычисление суммы заданного столбца
         public int Sum_Column(int j)
             {

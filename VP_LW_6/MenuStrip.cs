@@ -34,6 +34,18 @@ namespace VP_LW_6
             dataGridView2.AllowUserToAddRows = false;
         }
 
+        private void DataGridViewInitializeOdnomer() // Making our DataGrid
+        {
+            DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
+            columnStyle.BackColor = Color.Azure;
+            columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            int MaxRows = 3;
+            dataGridView2.Columns.Add("A00", "ЯЧ00");
+            dataGridView2.Columns.Add("A01", "ЯЧ01");
+            dataGridView2.Columns.Add("A10", "ЯЧ10");
+            dataGridView2.Columns.Add("A11", "ЯЧ11");
+            dataGridView2.AllowUserToAddRows = false;
+        }
 
         public MenuStrip()
         {
@@ -55,12 +67,26 @@ namespace VP_LW_6
 
         private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int i = 0;
+            int k = 0;
             ShowBox.Clear();
             foreach (ArrInt ar in ArrInt1)
             {
-                ShowBox.Text += "Массив:" + i + ar.ToString()+"\n";
-                i++;          
+                ShowBox.Text += "Массив:" + k + ar.ToString()+"\n";
+                k++;          
+            }
+            int i = 0;
+            DataGridViewInitializeOdnomer();
+            dataGridView2.RowCount = ArrInt1.Count();
+            foreach (ArrInt ar in ArrInt1)
+            {
+                //for (int i = 0; i < ArrInt1.Count(); i++)
+                //{
+                    for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                    {
+                        this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j, dataGridView2.ColumnCount);
+                    }
+                i++;
+                //}
             }
         }
 
@@ -135,6 +161,8 @@ namespace VP_LW_6
 
         private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            dataGridView2.Rows.Clear();
+            dataGridView2.Columns.Clear();
             DataGridViewInitialize();
             dataGridView2.AllowUserToAddRows = true;
         }
