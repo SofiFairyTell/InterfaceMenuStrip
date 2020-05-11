@@ -75,7 +75,7 @@
             this.ввестиСКлавиатурыToolStripMenuItem,
             this.автоматическиToolStripMenuItem});
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.создатьToolStripMenuItem.Text = "Создать";
             // 
             // ввестиСКлавиатурыToolStripMenuItem
@@ -90,6 +90,7 @@
             this.автоматическиToolStripMenuItem.Name = "автоматическиToolStripMenuItem";
             this.автоматическиToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.автоматическиToolStripMenuItem.Text = "Автоматически";
+            this.автоматическиToolStripMenuItem.Click += new System.EventHandler(this.автоматическиToolStripMenuItem_Click);
             // 
             // просмотретьToolStripMenuItem
             // 
@@ -223,7 +224,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(31, 45);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(264, 292);
+            this.dataGridView2.Size = new System.Drawing.Size(360, 292);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -239,7 +240,7 @@
             // 
             // ShowBox
             // 
-            this.ShowBox.Location = new System.Drawing.Point(353, 68);
+            this.ShowBox.Location = new System.Drawing.Point(414, 65);
             this.ShowBox.Multiline = true;
             this.ShowBox.Name = "ShowBox";
             this.ShowBox.Size = new System.Drawing.Size(374, 138);
@@ -248,7 +249,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(350, 45);
+            this.label1.Location = new System.Drawing.Point(411, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 17);
             this.label1.TabIndex = 4;

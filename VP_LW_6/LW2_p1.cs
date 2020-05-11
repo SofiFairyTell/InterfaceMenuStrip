@@ -10,9 +10,10 @@ namespace ArrIntSpace
    public interface IArOperation
    {
       int Sum_Column(int j);
-   //   void ShowArray();
-   //   void InputArray();
-    }
+      int ShowArray(int j, int i);
+      void InputArray();
+      void InputArray(int data, int i, int j);
+   }
 
 
   public class ArrInt: IArOperation
@@ -81,37 +82,22 @@ namespace ArrIntSpace
             //ввод массива
         public void InputArray()
             {
+                Random r2 = new Random();
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < m; j++)
                     {
-                      //  Console.Write("Элемент[{0}][{1}]", i, j);
-                    IntArr[i, j] = i*5-j;
-                }
+                         
+                         int Num = r2.Next(10);
+                            IntArr[i, j] = Num;
+                    }
                 }
             }
         public void InputArray(int data, int i, int j )
             {
-                // for (int i = 0; i < n; i++)
-                // {
-                //     for (int j = 0; j < m; j++)
-                //     {
-                      //  Console.Write("Элемент[{0}][{1}]", i, j);
                     IntArr[i, j] = data;
-              //  }
-                //}
             }
-
-
-
             //вывод массива
-         //public int ShowArray(int i, int j)
-         //   {
-         //    return IntArr[i, j];
-         //           //Console.Write("[{0}][{1}]={2}", i, j, );
-         //          //    Console.WriteLine();
-         //   }
-
         public int ShowArray(int p, int L)
         {
             int m = 2;
@@ -127,8 +113,6 @@ namespace ArrIntSpace
                 }
             }
             return Odnomer[p];
-            //Console.Write("[{0}][{1}]={2}", i, j, );
-            //    Console.WriteLine();
         }
         //вычисление суммы заданного столбца
         public int Sum_Column(int j)

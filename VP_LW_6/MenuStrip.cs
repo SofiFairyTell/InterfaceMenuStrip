@@ -40,6 +40,8 @@ namespace VP_LW_6
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
             int MaxRows = 3;
+            dataGridView2.Rows.Clear();
+            dataGridView2.Columns.Clear();
             dataGridView2.Columns.Add("A00", "ЯЧ00");
             dataGridView2.Columns.Add("A01", "ЯЧ01");
             dataGridView2.Columns.Add("A10", "ЯЧ10");
@@ -75,19 +77,18 @@ namespace VP_LW_6
                 k++;          
             }
             int i = 0;
+
             DataGridViewInitializeOdnomer();
+            dataGridView2.ReadOnly = true;
             dataGridView2.RowCount = ArrInt1.Count();
             foreach (ArrInt ar in ArrInt1)
             {
-                //for (int i = 0; i < ArrInt1.Count(); i++)
-                //{
                     for (int j = 0; j < dataGridView2.ColumnCount; j++)
                     {
                         this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j, dataGridView2.ColumnCount);
                     }
                 i++;
-                //}
-            }
+             }
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,22 +110,6 @@ namespace VP_LW_6
         {
 
         }
-    //Раздел "Работа
-        private void сортировкаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void суммаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void изменениеЭлементовToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -142,17 +127,14 @@ namespace VP_LW_6
 
         private void поНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridViewInitialize();
-
             int i = 0;
-             if (dataGridView2.ColumnCount < ArrInt1.Count)
+            if (dataGridView2.ColumnCount < ArrInt1.Count)
             {
                 dataGridView2.ColumnCount = ArrInt1.Count;
             }
             foreach (ArrInt arr in ArrInt1)
             {
                 int selrow = dataGridView2.SelectedCells[i].RowIndex;
-                // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
                 int Sum = arr.Sum_Column(selrow);
                 MessageBox.Show(Convert.ToString(Sum));
                 i++;
@@ -165,25 +147,53 @@ namespace VP_LW_6
             dataGridView2.Columns.Clear();
             DataGridViewInitialize();
             dataGridView2.AllowUserToAddRows = true;
+            dataGridView2.ReadOnly = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             ArrInt Arr = new ArrInt(n, m);
-            for (int i = 0; i < dataGridView2.RowCount-1; i++)
+            for (int i = 0; i < dataGridView2.RowCount - 1; i++)
             {
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
                 {
-                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value),i,j);
+                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value), i, j);
                 }
             }
             this.ArrInt1.Add(Arr);
-            ArrInt1.Count();                
+            ArrInt1.Count();
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
             dataGridView2.AllowUserToAddRows = false;
         }
+        private void автоматическиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArrInt Arr = new ArrInt(n, m);
+            ArrInt Arr2 = new ArrInt(n, m);
+            Arr.InputArray();
+            Arr2.InputArray();
+            this.ArrInt1.Add(Arr);
+            this.ArrInt1.Add(Arr2);
+            MessageBox.Show("Список из 2-х массивов со случайными числами создан");
+        }
 
 
+        //Раздел "Работа
+        private void сортировкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void суммаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+       
     }
 }
