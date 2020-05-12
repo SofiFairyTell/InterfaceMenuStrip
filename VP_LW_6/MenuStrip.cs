@@ -18,7 +18,8 @@ namespace VP_LW_6
     {
        static int n = 2;
        static int m = 2;
-        List<ArrInt> ArrInt1 = new List<ArrInt>();
+       private ArrayList ArrInt1 = new ArrayList();
+        //List<ArrInt> ArrInt1 = new List<ArrInt>();
         ArrInt Arr = new ArrInt(n, m);
 
 
@@ -80,7 +81,7 @@ namespace VP_LW_6
 
             DataGridViewInitializeOdnomer();
             dataGridView2.ReadOnly = true;
-            dataGridView2.RowCount = ArrInt1.Count();
+            dataGridView2.RowCount = ArrInt1.Count;
             foreach (ArrInt ar in ArrInt1)
             {
                     for (int j = 0; j < dataGridView2.ColumnCount; j++)
@@ -128,16 +129,26 @@ namespace VP_LW_6
         private void поНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int i = 0;
+            dataGridView2.MultiSelect = true;
+            foreach (DataGridView row in dataGridView2.Rows)
+            {
+
+            }
+            
             if (dataGridView2.ColumnCount < ArrInt1.Count)
             {
                 dataGridView2.ColumnCount = ArrInt1.Count;
             }
+            (ArrInt)ArrInt1[i];
+            Arr.Sum_All();
             foreach (ArrInt arr in ArrInt1)
             {
-                int selrow = dataGridView2.SelectedCells[i].RowIndex;
-                int Sum = arr.Sum_Column(selrow);
+                int selrow = dataGridView2.CurrentRow.Index;
+                if (ArrInt1.Contains(ArrInt1[selrow]))
+
+
+                int Sum;
                 MessageBox.Show(Convert.ToString(Sum));
-                i++;
             }
         }
 
@@ -161,7 +172,6 @@ namespace VP_LW_6
                 }
             }
             this.ArrInt1.Add(Arr);
-            ArrInt1.Count();
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
             dataGridView2.AllowUserToAddRows = false;
@@ -181,10 +191,44 @@ namespace VP_LW_6
         //Раздел "Работа
         private void сортировкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ArrInt1.Sort(new ArrIntSort());
+            int i = 0;
+            DataGridViewInitializeOdnomer();
+            dataGridView2.ReadOnly = true;
+            dataGridView2.RowCount = ArrInt1.Count;
+            foreach (ArrInt ar in ArrInt1)
+            {
+                for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                {
+                    this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j, dataGridView2.ColumnCount);
+                }
+                i++;
+            }
 
         }
+        public class ArrIntSort : IComparer
+        {
+            int IComparer.Compare(object obj1, object obj2)
+            {
+                ArrInt r1 = new ArrInt();
+                r1 = (ArrInt)obj1;
+                ArrInt r2 = new ArrInt();
+                r2 = (ArrInt)obj2;
+                if (r1.DeterminatArray() > r2.DeterminatArray())
+                {
+                    return 1;
+                }
+                else if (r1.DeterminatArray() < r2.DeterminatArray())
+                {
+                    return -1;
+                }
+                else return 0;
+            }
+        }
+    
 
-        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+
+    private void поискToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -194,6 +238,10 @@ namespace VP_LW_6
            
         }
 
-       
+        private void очиститьВсеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArrInt1.Clear();
+            MessageBox.Show("Все элементы из списка удалены");
+        }
     }
 }

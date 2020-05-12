@@ -52,6 +52,9 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.ShowBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очиститьВсеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выбранныйМассивToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +63,7 @@
             // 
             this.массивToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьToolStripMenuItem,
+            this.удалитьToolStripMenuItem,
             this.просмотретьToolStripMenuItem,
             this.редактироватьToolStripMenuItem,
             this.сохранитьToolStripMenuItem,
@@ -95,35 +99,35 @@
             // просмотретьToolStripMenuItem
             // 
             this.просмотретьToolStripMenuItem.Name = "просмотретьToolStripMenuItem";
-            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.просмотретьToolStripMenuItem.Text = "Просмотреть";
             this.просмотретьToolStripMenuItem.Click += new System.EventHandler(this.просмотретьToolStripMenuItem_Click);
             // 
             // редактироватьToolStripMenuItem
             // 
             this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
-            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
             this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // выгрузитьToolStripMenuItem
             // 
             this.выгрузитьToolStripMenuItem.Name = "выгрузитьToolStripMenuItem";
-            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.выгрузитьToolStripMenuItem.Text = "Выгрузить";
             this.выгрузитьToolStripMenuItem.Click += new System.EventHandler(this.выгрузитьToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -213,6 +217,7 @@
             this.оПрограммеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
@@ -221,8 +226,10 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(31, 45);
+            this.dataGridView2.Location = new System.Drawing.Point(31, 46);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 20;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(360, 292);
             this.dataGridView2.TabIndex = 1;
@@ -231,6 +238,7 @@
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(31, 394);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(228, 44);
             this.AddButton.TabIndex = 2;
@@ -240,20 +248,43 @@
             // 
             // ShowBox
             // 
-            this.ShowBox.Location = new System.Drawing.Point(414, 65);
+            this.ShowBox.Location = new System.Drawing.Point(413, 65);
+            this.ShowBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowBox.Multiline = true;
             this.ShowBox.Name = "ShowBox";
-            this.ShowBox.Size = new System.Drawing.Size(374, 138);
+            this.ShowBox.Size = new System.Drawing.Size(375, 138);
             this.ShowBox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(411, 45);
+            this.label1.Location = new System.Drawing.Point(411, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Результаты";
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.очиститьВсеToolStripMenuItem,
+            this.выбранныйМассивToolStripMenuItem});
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.удалитьToolStripMenuItem.Text = "Удалить";
+            // 
+            // очиститьВсеToolStripMenuItem
+            // 
+            this.очиститьВсеToolStripMenuItem.Name = "очиститьВсеToolStripMenuItem";
+            this.очиститьВсеToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.очиститьВсеToolStripMenuItem.Text = "Очистить все";
+            this.очиститьВсеToolStripMenuItem.Click += new System.EventHandler(this.очиститьВсеToolStripMenuItem_Click);
+            // 
+            // выбранныйМассивToolStripMenuItem
+            // 
+            this.выбранныйМассивToolStripMenuItem.Name = "выбранныйМассивToolStripMenuItem";
+            this.выбранныйМассивToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.выбранныйМассивToolStripMenuItem.Text = "Выбранный массив";
             // 
             // MenuStrip
             // 
@@ -266,7 +297,9 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuStrip";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Работа с массивами";
             this.Load += new System.EventHandler(this.MenuStrip_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -304,6 +337,9 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.TextBox ShowBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem очиститьВсеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выбранныйМассивToolStripMenuItem;
     }
 }
 
