@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,8 +20,10 @@ namespace ArrIntSpace
 
     public class ArrInt : IArOperation
     {
-        int[,] IntArr; //двумерный массив
-        int n, m;// строки и столбцы
+        private  int[,] IntArr; //двумерный массив
+        private int[] IntArrOne; 
+        private int n, m;// строки и столбцы
+        private uint k;
         //свойства для строк и столбцов
         public int Row_N
         {
@@ -80,7 +83,39 @@ namespace ArrIntSpace
                 }
             }
         }
+        public ArrInt(int[] IntArray)
+        {
+            k = (uint) IntArray.Length;
+            this.IntArray = IntArray;
+        }
+    public int[] IntArray
+        {
+            get
+            {
+                return IntArrOne;
+            }
+            set
+            {
+                if(value!=null)
+                {
+                    if(value.Length == k)
+                    {
+                        IntArrOne = value;
+                    }
+                    else
+                    {
+                        k = (uint)value.Length;
+                        IntArrOne = value;
+                    }
+                }
+                else
+                {
+                    IntArrOne = null;
+                }
+            }
+        }
         //ввод массива
+        
         public void InputArray()
         {
             Random r2 = new Random();
@@ -263,6 +298,16 @@ namespace ArrIntSpace
     }
 
    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //public class ArrCollection : ICollection<ArrInt>
     // {
     //  public void Add(ArrInt Arr)
