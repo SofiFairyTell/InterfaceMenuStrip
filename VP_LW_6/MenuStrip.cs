@@ -218,33 +218,42 @@ namespace VP_LW_6
                 if(intArray.Length == Length)
                 {
                     ArrInt value = new ArrInt(intArray);
-                    int index = -1;
+                    int index = -1;                    if (index == -1)
+
                     for (int i = 0; i<ArrInt1.Count;i++)
                     {
                         ArrInt ArrNew = ArrInt1[i] as ArrInt;
                         if (ArrNew == value)
                         {
-                            index = 1;
+                            index = i;
                             break;
                         }
                     }
                     if (index == -1)
                     {
-                        MessageBox.Show(ERR_LENGTH, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show(ERR_PARS, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                        dataGridView2.ClearSelection();
+                        dataGridView2.Rows[index].Selected = true;
+                    } 
                 }
+                else
+                {
+                    MessageBox.Show(ERR_LENGTH, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }              
             }
-
+            else
+                {
+                MessageBox.Show(ERR_PARS, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
         private int[] StringToArray(string Arr)
         {
             if(Arr!="")
             {
-                string[] ArrayOfString = Arr.Split(',');
+                string[] ArrayOfString = Arr.Split(' ');
                 int[] ArrOfInt = new int[ArrayOfString.Length];
                 for(int i=0;i< ArrayOfString.Length;i++)
                 {
