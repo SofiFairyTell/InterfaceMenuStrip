@@ -102,11 +102,11 @@ namespace VP_LW_6
         private void АвтоматическиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ArrIntOne Arr = new ArrIntOne();
-            ArrIntOne Arr2 = new ArrIntOne();
-            Arr.InputArray(10);
-            Arr2.InputArray(5);
+            ///ArrIntOne Arr2 = new ArrIntOne();
+            Arr.InputArray();
+            //Arr.InputArray(5);
             this.ArrIntList.Add(Arr);
-            this.ArrIntList.Add(Arr2);
+            //this.ArrIntList.Add(Arr);
             MessageBox.Show("Список из 2-х массивов со случайными числами создан");
         }
         private void ПросмотретьToolStripMenuItem_Click(object sender, EventArgs e)

@@ -26,38 +26,38 @@ namespace ArrIntSpace
         {
             get
             {
-                return IntArrOne;
+                return intArrOne;
             }
             set
             {
                 if( value != null)
                 {
                     if(value.Length == n) {
-                        IntArrOne= value;
+                        intArrOne= value;
                     }
                     else
                     {
                         n = (uint)value.Length;
-                        IntArrOne = value;
+                        intArrOne = value;
                     }
                 }
                 else
                 {
-                    IntArrOne = null;
+                    intArrOne = null;
                 }
             }
 
         }
         public int ShowArray(int p)
         {
-            return IntArrOne[p];
+            return intArrOne[p];
         }
         public void InputArray(int data, int i)
         {
             IntArrOne[i] = data;
         }
 
-        public void InputArray(int random)
+        public void InputArray()
         {
             Random r2 = new Random();
             for (int i = 0; i < n; i++)
@@ -107,15 +107,15 @@ namespace ArrIntSpace
                 this.IntArrOne = null;
             }
         }
-        public override string ToString()
-        {
-            string ArrayToString = "";
-            if (IntArrOne.Length != 0)
-            {
-                ArrayToString = ArrayToString + IntArrOne[0].ToString();
-            }
-            return ArrayToString;
-        }
+        //public override string ToString()
+        //{
+        //    string ArrayToString = "";
+        //    if (intArrOne.Length != 0)
+        //    {
+        //        ArrayToString = ArrayToString + intArrOne[0].ToString();
+        //    }
+        //    return ArrayToString;
+        //}
         public uint N
         {
             get
@@ -168,29 +168,29 @@ namespace ArrIntSpace
             int Sum = 0;
             for (int i = 0; i < n; i++)
             {
-                Sum += IntArrOne[i];
+                Sum += intArrOne[i];
             }
             return Sum;
         }
         //вывод содержимого массива в виде строки 
-        // public override string ToString()
-        // {
-        //     var sb = new StringBuilder();// создаем объект - изменяемую строку символов 
+        public override string ToString()
+        {
+            var sb = new StringBuilder();// создаем объект - изменяемую строку символов 
 
-        //     for (int i = 0; i < this.n; i++)
-        //     {
-        //             sb.Append($"№{i} = {this.IntArr[i]} ");//добавляет сведения в конец текущего объекта
-        //         //sb.AppendLine(); //вернуть если надо чтобы построчно выводилось
-        //     }
+            for (int i = 0; i < this.n; i++)
+            {
+                sb.Append($"№{i} = {this.intArrOne[i]} ");//добавляет сведения в конец текущего объекта
+                                                       //sb.AppendLine(); //вернуть если надо чтобы построчно выводилось
+            }
 
-        //     return sb.ToString();
-        // }
+            return sb.ToString();
+        }
 
         public static ArrIntOne operator ++(ArrIntOne obj)
         {
             for (int i = 0; i < obj.n; i++)
             {
-                obj.IntArrOne[i]++;
+                obj.intArrOne[i]++;
             }
             return obj;
         }
@@ -198,7 +198,7 @@ namespace ArrIntSpace
         {
             for (int i = 0; i < obj.n; i++)
             {
-                obj.IntArrOne[i]--;
+                obj.intArrOne[i]--;
             }
             return obj;
         }
