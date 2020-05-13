@@ -16,16 +16,15 @@ namespace VP_LW_6
 {
     public partial class MenuStrip : Form
     {
-        static int n = 2;
-        static int m = 2;
-        private int Length = m * n;
+        private int Length = 4;
         private const string ERR = "Ошибка";
         private const string ERR_SELECTED = "Выберите хотя бы одну строку";
         private const string ERR_FIND = "Не найдено";
         private const string ERR_LENGTH = " Введены неверные данные";
         private const string ERR_PARS = "Длина больше или меньше 4";
-        private ArrayList ArrInt1 = new ArrayList();
-        ArrInt Arr = new ArrInt(n, m);
+                
+        private ArrayList ArrIntList = new ArrayList();
+        ArrIntOne Arr = new ArrIntOne();
 
         #region DataGridView Initializers
         private void DataGridViewInitialize() // Making our DataGrid
@@ -33,7 +32,6 @@ namespace VP_LW_6
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            int MaxRows = 3;
             dataGridView2.Columns.Add("A1", "Столбец 1");
             dataGridView2.Columns.Add("A2", "Столбец 2");
             dataGridView2.AllowUserToAddRows = false;
@@ -52,7 +50,6 @@ namespace VP_LW_6
             dataGridView2.Columns.Add("A11", "ЯЧ11");
             dataGridView2.AllowUserToAddRows = false;
         }
-
         #endregion
        
         #region Work with Array
@@ -60,21 +57,20 @@ namespace VP_LW_6
         {
             int k = 0;
             ShowBox.Clear();
-            foreach (ArrInt ar in ArrInt1)
+            foreach (ArrIntOne ar in ArrIntList)
             {
                 ShowBox.Text += "Массив:" + k + ar.ToString() + "\n";
                 k++;
             }
             int i = 0;
-
             DataGridViewInitializeOdnomer();
             dataGridView2.ReadOnly = true;
-            dataGridView2.RowCount = ArrInt1.Count;
-            foreach (ArrInt ar in ArrInt1)
+            dataGridView2.RowCount = ArrIntList.Count;
+            foreach (ArrIntOne ar in ArrIntList)
             {
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
                 {
-                    this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j, dataGridView2.ColumnCount);
+                    this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j);
                 }
                 i++;
             }
@@ -90,27 +86,27 @@ namespace VP_LW_6
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            ArrInt Arr = new ArrInt(n, m);
+            ArrIntOne Arr = new ArrIntOne();
             for (int i = 0; i < dataGridView2.RowCount - 1; i++)
             {
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
                 {
-                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value), i, j);
+                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value), i);
                 }
             }
-            this.ArrInt1.Add(Arr);
+            this.ArrIntList.Add(Arr);
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
             dataGridView2.AllowUserToAddRows = false;
         }
         private void АвтоматическиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ArrInt Arr = new ArrInt(n, m);
-            ArrInt Arr2 = new ArrInt(n, m);
-            Arr.InputArray();
-            Arr2.InputArray();
-            this.ArrInt1.Add(Arr);
-            this.ArrInt1.Add(Arr2);
+            ArrIntOne Arr = new ArrIntOne();
+            ArrIntOne Arr2 = new ArrIntOne();
+            Arr.InputArray(10);
+            Arr2.InputArray(5);
+            this.ArrIntList.Add(Arr);
+            this.ArrIntList.Add(Arr2);
             MessageBox.Show("Список из 2-х массивов со случайными числами создан");
         }
         private void ПросмотретьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,15 +141,15 @@ namespace VP_LW_6
                     DataGridViewInitialize();
 
                     int i = 0;
-                    if (dataGridView2.ColumnCount < ArrInt1.Count)
+                    if (dataGridView2.ColumnCount < ArrIntList.Count)
                     {
-                        dataGridView2.ColumnCount = ArrInt1.Count;
+                        dataGridView2.ColumnCount = ArrIntList.Count;
                     }
-                    foreach (ArrInt arr in ArrInt1)
+                    foreach (ArrIntOne arr in ArrIntList)
                     {
                         int selrow = dataGridView2.SelectedCells[i].RowIndex;
                         // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
-                        int Sum = arr.Sum_Column(selrow);
+                        int Sum = arr.Sum();
                         MessageBox.Show(Convert.ToString(Sum));
                         i++;
                     }
@@ -167,16 +163,16 @@ namespace VP_LW_6
         #region Sort
         private void ПоВозрастаниюЗначенияОпределителяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ArrInt1.Sort(new ArrIntSort());
+            ArrIntList.Sort(new ArrIntSort());
             int i = 0;
             DataGridViewInitializeOdnomer();
             dataGridView2.ReadOnly = true;
-            dataGridView2.RowCount = ArrInt1.Count;
-            foreach (ArrInt ar in ArrInt1)
+            dataGridView2.RowCount = ArrIntList.Count;
+            foreach (ArrIntOne ar in ArrIntList)
             {
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
                 {
-                    this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j, dataGridView2.ColumnCount);
+                    this.dataGridView2.Rows[i].Cells[j].Value = ar.ShowArray(j);
                 }
                 i++;
             }
@@ -186,15 +182,15 @@ namespace VP_LW_6
                 {
                     int IComparer.Compare(object obj1, object obj2)
                     {
-                        ArrInt r1 = new ArrInt();
-                        r1 = (ArrInt)obj1;
-                        ArrInt r2 = new ArrInt();
-                        r2 = (ArrInt)obj2;
-                        if (r1.DeterminatArray() > r2.DeterminatArray())
+                        ArrIntOne r1 = new ArrIntOne();
+                        r1 = (ArrIntOne)obj1;
+                        ArrIntOne r2 = new ArrIntOne();
+                        r2 = (ArrIntOne)obj2;
+                        if (r1.Sum() > r2.Sum())
                         {
                             return 1;
                         }
-                        else if (r1.DeterminatArray() < r2.DeterminatArray())
+                        else if (r1.Sum() < r2.Sum())
                         {
                             return -1;
                         }
@@ -217,18 +213,18 @@ namespace VP_LW_6
             {
                 if(intArray.Length == Length)
                 {
-                    ArrInt value = new ArrInt(intArray);
-                    int index = -1;                    if (index == -1)
-
-                    for (int i = 0; i<ArrInt1.Count;i++)
-                    {
-                        ArrInt ArrNew = ArrInt1[i] as ArrInt;
-                        if (ArrNew == value)
+                    ArrIntOne value = new ArrIntOne(intArray);
+                    int index = -1;                    
+                    if (index == -1)
+                        for (int i = 0; i<ArrIntList.Count;i++)
                         {
-                            index = i;
-                            break;
+                            ArrIntOne ArrNew = ArrIntList[i] as ArrIntOne;
+                            if (ArrNew == value)
+                            {
+                                index = i;
+                                break;
+                            }
                         }
-                    }
                     if (index == -1)
                     {
                         MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -273,23 +269,23 @@ namespace VP_LW_6
                 return null;
             }
         }
-        private bool TryToParse(out ArrayList newAArrayList)
+        private bool TryToParse(out ArrayList NewArrIntList)
         {
-            newAArrayList = new ArrayList();
+            NewArrIntList = new ArrayList();
             for (int i = 0; i < dataGridView2.RowCount; i++)
             {
-                ArrInt newArray = new ArrInt();
+                ArrIntOne newArray = new ArrIntOne();
                 for (int j = 0; j < dataGridView2.ColumnCount; j++)
                 {
                     if (dataGridView2.Rows[i].Cells[j].Value == null)
                     {
-                        newArray.IntArray[j] = 0;
+                        newArray.IntArrOne[j] = 0;
                     }
                     else
                     {
                         if (Int32.TryParse(dataGridView2.Rows[i].Cells[j].Value.ToString(), out int newInt))
                         {
-                            newArray.IntArray[j] = newInt;
+                            newArray.IntArrOne[j] = newInt;
                         }
                         else
                         {
@@ -297,7 +293,7 @@ namespace VP_LW_6
                         }
                     }
                 }
-                newAArrayList.Add(newArray);
+                NewArrIntList.Add(newArray);
             }
             return true;
         }
@@ -315,7 +311,7 @@ namespace VP_LW_6
         private void ОчиститьВсеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ViewArray();
-            ArrInt1.Clear();
+            ArrIntList.Clear();
             ViewArray();
             MessageBox.Show("Все элементы из списка удалены");
         }
@@ -324,7 +320,7 @@ namespace VP_LW_6
             List<int> IndexToDelete = dataGridView2.SelectedRows.Cast<DataGridViewRow>().Select(x => x.Index).ToList();
             if (IndexToDelete.Count != 0)
             {
-                    ArrInt1.RemoveAt(IndexToDelete[0]);
+                    ArrIntList.RemoveAt(IndexToDelete[0]);
                     IndexToDelete.RemoveAt(0);
                     ViewArray();
             }
@@ -346,7 +342,7 @@ namespace VP_LW_6
                         IndexToInc.Sort();
                         while (IndexToInc.Count != 0)
                         {
-                            ArrInt a = ArrInt1[IndexToInc[0]] as ArrInt;
+                            ArrIntOne a = ArrIntList[IndexToInc[0]] as ArrIntOne;
                             a++;
                             IndexToInc.RemoveAt(0);
                             ViewArray();
@@ -367,7 +363,7 @@ namespace VP_LW_6
                         IndexToInc.Sort();
                         while (IndexToInc.Count != 0)
                         {
-                            ArrInt a = ArrInt1[IndexToInc[0]] as ArrInt;
+                            ArrIntOne a = ArrIntList[IndexToInc[0]] as ArrIntOne;
                             a--;
                             IndexToInc.RemoveAt(0);
                             ViewArray();
