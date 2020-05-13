@@ -24,7 +24,7 @@ namespace VP_LW_6
         private const string ERR_PARS = "Длина больше или меньше 4";
                 
         private ArrayList ArrIntList = new ArrayList();
-        ArrIntOne Arr = new ArrIntOne();
+      //  ArrIntOne Arr = new ArrIntOne();
 
         #region DataGridView Initializers
         private void DataGridViewInitialize() // Making our DataGrid

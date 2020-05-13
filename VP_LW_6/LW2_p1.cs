@@ -30,7 +30,7 @@ namespace ArrIntSpace
             }
             set
             {
-                if(value != null)
+                if( value != null)
                 {
                     if(value.Length == n) {
                         IntArrOne= value;
