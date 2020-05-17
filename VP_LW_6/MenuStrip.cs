@@ -22,8 +22,8 @@ namespace VP_LW_6
         private const string ERR = "Ошибка";
         private const string ERR_SELECTED = "Выберите хотя бы одну строку";
         private const string ERR_FIND = "Не найдено";
-        private const string ERR_LENGTH = " Введены неверные данные";
-        private const string ERR_PARS = "Длина больше или меньше 4";
+        private const string ERR_LENGTH = " Длина больше или меньше 4";
+        private const string ERR_PARS = "Введены неверные данные";
         private ArrayList ArrInt1 = new ArrayList();
         ArrInt Arr = new ArrInt(n, m);
 
@@ -36,6 +36,7 @@ namespace VP_LW_6
             int MaxRows = 3;
             dataGridView2.Columns.Add("A1", "Столбец 1");
             dataGridView2.Columns.Add("A2", "Столбец 2");
+            dataGridView2.Rows.Add(2);
             dataGridView2.AllowUserToAddRows = false;
         }
 
@@ -54,7 +55,7 @@ namespace VP_LW_6
         }
 
         #endregion
-       
+
         #region Work with Array
         private void ViewArray()
         {
@@ -84,20 +85,21 @@ namespace VP_LW_6
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
             DataGridViewInitialize();
-            dataGridView2.AllowUserToAddRows = true;
             dataGridView2.ReadOnly = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             ArrInt Arr = new ArrInt(n, m);
-            for (int i = 0; i < dataGridView2.RowCount - 1; i++)
-            {
-                for (int j = 0; j < dataGridView2.ColumnCount; j++)
-                {
-                    Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value), i, j);
-                }
-            }
+            dataGridView2.AllowUserToAddRows = false;
+                for (int i = 0; i < dataGridView2.RowCount; i++)
+                   {
+                    for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                      {
+                        Arr.InputArray(Convert.ToInt16(this.dataGridView2.Rows[j].Cells[i].Value), i, j);
+                     }
+                    }
+
             this.ArrInt1.Add(Arr);
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
@@ -138,26 +140,26 @@ namespace VP_LW_6
         }
         #endregion
         #region Work with data in Array
-       
+
         #region Sum
         private void ПоНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
-                {
-                    DataGridViewInitialize();
+        {
+            DataGridViewInitialize();
 
-                    int i = 0;
-                    if (dataGridView2.ColumnCount < ArrInt1.Count)
-                    {
-                        dataGridView2.ColumnCount = ArrInt1.Count;
-                    }
-                    foreach (ArrInt arr in ArrInt1)
-                    {
-                        int selrow = dataGridView2.SelectedCells[i].RowIndex;
-                        // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
-                        int Sum = arr.Sum_Column(selrow);
-                        MessageBox.Show(Convert.ToString(Sum));
-                        i++;
-                    }
-                }
+            int i = 0;
+            if (dataGridView2.ColumnCount < ArrInt1.Count)
+            {
+                dataGridView2.ColumnCount = ArrInt1.Count;
+            }
+            foreach (ArrInt arr in ArrInt1)
+            {
+                int selrow = dataGridView2.SelectedCells[i].RowIndex;
+                // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
+                int Sum = arr.Sum_Column(selrow);
+                MessageBox.Show(Convert.ToString(Sum));
+                i++;
+            }
+        }
         private void ВыбранныхМассивовToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -183,72 +185,70 @@ namespace VP_LW_6
 
         }
         public class ArrIntSort : IComparer
+        {
+            int IComparer.Compare(object obj1, object obj2)
+            {
+                ArrInt r1 = new ArrInt();
+                r1 = (ArrInt)obj1;
+                ArrInt r2 = new ArrInt();
+                r2 = (ArrInt)obj2;
+                if (r1.DeterminatArray() > r2.DeterminatArray())
                 {
-                    int IComparer.Compare(object obj1, object obj2)
-                    {
-                        ArrInt r1 = new ArrInt();
-                        r1 = (ArrInt)obj1;
-                        ArrInt r2 = new ArrInt();
-                        r2 = (ArrInt)obj2;
-                        if (r1.DeterminatArray() > r2.DeterminatArray())
-                        {
-                            return 1;
-                        }
-                        else if (r1.DeterminatArray() < r2.DeterminatArray())
-                        {
-                            return -1;
-                        }
-                        else return 0;
-                    }
+                    return 1;
                 }
+                else if (r1.DeterminatArray() < r2.DeterminatArray())
+                {
+                    return -1;
+                }
+                else return 0;
+            }
+        }
         #endregion
 
         #region Find
         private void линейныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FindForm ArrFind = new FindForm();
+            ArrayList ArrFindList= new ArrayList();
             DialogResult result = ArrFind.ShowDialog(this);
             if (result == DialogResult.Cancel)
             {
                 return;
             }
-            int[] intArray = StringToArray(ArrFind.FindTextBox.Text);
-            if(intArray!=null)
+            ArrInt intArray = new ArrInt(n, m);
+            for (int i = 0; i < ArrFind.FindGrid.RowCount; i++)
             {
-                if(intArray.Length == Length)
+                for (int j = 0; j < ArrFind.FindGrid.ColumnCount; j++)
                 {
-                    ArrInt value = new ArrInt(intArray);
-                    int index = -1;                    if (index == -1)
+                    intArray.InputArray(Convert.ToInt16(ArrFind.FindGrid.Rows[j].Cells[i].Value), i, j);
+                }
+            }
+            ArrFindList.Add(intArray);
+            //if (intArray )
+            //{
+                MessageBox.Show("Данные для поиска введены", "Хорошо", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    for (int i = 0; i<ArrInt1.Count;i++)
+                int index = -1;
+                for (int i = 0; i < ArrInt1.Count; i++)
+                {
+                    ArrInt ArrNew = ArrInt1[i] as ArrInt;
+                    ArrInt ArrFindNew = ArrFindList[0] as ArrInt;
+                     if (ArrFindNew == ArrNew)
                     {
-                        ArrInt ArrNew = ArrInt1[i] as ArrInt;
-                        if (ArrNew == value)
-                        {
-                            index = i;
-                            break;
-                        }
-                    }
-                    if (index == -1)
-                    {
-                        MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Хорошо");
                     }
                     else
                     {
-                        dataGridView2.ClearSelection();
-                        dataGridView2.Rows[index].Selected = true;
-                    } 
+                        MessageBox.Show("Not yet");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(ERR_LENGTH, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }              
-            }
-            else
-                {
-                MessageBox.Show(ERR_PARS, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            //}
+            //else
+            //{
+            //    MessageBox.Show(ERR_LENGTH, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
+          
         private int[] StringToArray(string Arr)
         {
             if(Arr!="")
@@ -273,34 +273,35 @@ namespace VP_LW_6
                 return null;
             }
         }
-        private bool TryToParse(out ArrayList newAArrayList)
-        {
-            newAArrayList = new ArrayList();
-            for (int i = 0; i < dataGridView2.RowCount; i++)
-            {
-                ArrInt newArray = new ArrInt();
-                for (int j = 0; j < dataGridView2.ColumnCount; j++)
-                {
-                    if (dataGridView2.Rows[i].Cells[j].Value == null)
-                    {
-                        newArray.IntArray[j] = 0;
-                    }
-                    else
-                    {
-                        if (Int32.TryParse(dataGridView2.Rows[i].Cells[j].Value.ToString(), out int newInt))
-                        {
-                            newArray.IntArray[j] = newInt;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-                newAArrayList.Add(newArray);
-            }
-            return true;
-        }
+
+        //private bool TryToParse(out ArrayList newAArrayList)
+        //{
+        //    newAArrayList = new ArrayList();
+        //    for (int i = 0; i < dataGridView2.RowCount; i++)
+        //    {
+        //        ArrInt newArray = new ArrInt();
+        //        for (int j = 0; j < dataGridView2.ColumnCount; j++)
+        //        {
+        //            if (dataGridView2.Rows[i].Cells[j].Value == null)
+        //            {
+        //                newArray.IntArray[j] = 0;
+        //            }
+        //            else
+        //            {
+        //                if (Int32.TryParse(dataGridView2.Rows[i].Cells[j].Value.ToString(), out int newInt))
+        //                {
+        //                    newArray.IntArray[j] = newInt;
+        //                }
+        //                else
+        //                {
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //        newAArrayList.Add(newArray);
+        //    }
+        //    return true;
+        //}
         private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -400,6 +401,12 @@ namespace VP_LW_6
             MessageBox.Show("Добро пожаловaть в программу!","О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
- 
+        private void dataGridView2_AllowUserToAddRowsChanged(object sender, EventArgs e)
+        {
+            if (dataGridView2.Rows.Count > 2)
+            {
+                dataGridView2.AllowUserToAddRows = false;
+            }
+        }
     }
 }

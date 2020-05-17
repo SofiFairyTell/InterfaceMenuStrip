@@ -24,98 +24,89 @@ namespace ArrIntSpace
         private int[] IntArrOne; 
         private int n, m;// строки и столбцы
         private uint k;
-        //свойства для строк и столбцов
-        public int Row_N
-        {
-            get
+        #region свойства для строк и столбцов
+            public int Row_N
             {
-                return n;
-            }
-            set
-            {
-                if (value != 0 && value > 0)
+                get
                 {
-                    n = value;
+                    return n;
                 }
-                else
+                set
                 {
-                    Console.WriteLine("Неправильный ввод");
-                    n = 1;
-                }
-            }
-        }
-        public int Col_M
-        {
-            get
-            {
-                return m;
-            }
-            set
-            {
-                if (value != 0 && value > 0)
-                {
-                    m = value;
-                }
-                else
-                {
-                    Console.WriteLine("Неправильный ввод");
-                    m = 1;
-                }
-            }
-        }
-        //конструкторы
-        public ArrInt(int n, int m)
-        {
-            Row_N = n;
-            Col_M = m;
-            IntArr = new int[Row_N, Col_M];
-        }
-        public ArrInt()
-        {
-            Row_N = 2;
-            Col_M = 2;
-            IntArr = new int[Row_N, Col_M];
-            for (int i = 0; i < Row_N; i++)
-            {
-                for (int j = 0; j < Col_M; j++)
-                {
-                    IntArr[i, j] = i * j + 1;
-                }
-            }
-        }
-        public ArrInt(int[] IntArray)
-        {
-            k = (uint) IntArray.Length;
-            this.IntArray = IntArray;
-        }
-    public int[] IntArray
-        {
-            get
-            {
-                return IntArrOne;
-            }
-            set
-            {
-                if(value!=null)
-                {
-                    if(value.Length == k)
+                    if (value != 0 && value > 0)
                     {
-                        IntArrOne = value;
+                        n = value;
                     }
                     else
                     {
-                        k = (uint)value.Length;
-                        IntArrOne = value;
+                        Console.WriteLine("Неправильный ввод");
+                        n = 1;
                     }
                 }
-                else
+            }
+            public int Col_M
+            {
+                get
                 {
-                    IntArrOne = null;
+                    return m;
+                }
+                set
+                {
+                    if (value != 0 && value > 0)
+                    {
+                        m = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Неправильный ввод");
+                        m = 1;
+                    }
                 }
             }
-        }
+        #endregion
+        #region конструкторы
+            public ArrInt(int n, int m)
+            {
+                Row_N = n;
+                Col_M = m;
+                IntArr = new int[Row_N, Col_M];
+            }
+            public ArrInt()
+            {
+                Row_N = 2;
+                Col_M = 2;
+                IntArr = new int[Row_N, Col_M];
+                for (int i = 0; i < Row_N; i++)
+                {
+                    for (int j = 0; j < Col_M; j++)
+                    {
+                        IntArr[i, j] = i * j + 1;
+                    }
+                }
+            }
+            public ArrInt(int[] IntArray)
+            {
+            k = (uint)IntArray.Length;
+             IntArr = new int[Row_N, Col_M];
+            for (int i=0; i<Row_N;i++)
+            {
+                for(int j=0; j<Col_M;j++)
+                {
+                   IntArr[i,j] = IntArray[k];
+                   k++;
+                }
+            }          
+            }
+            
+            // public ArrInt(int[] IntArray)
+            // {
+            //     k = (uint)IntArray.Length;
+            //     this.IntArrOne= IntArray;      
+            // }
+
+        #endregion
+
         //ввод массива
-        
         public void InputArray()
         {
             Random r2 = new Random();
@@ -150,6 +141,25 @@ namespace ArrIntSpace
             }
             return Odnomer[p];
         }
+        public int[] OnDimArray ()
+        {
+            int m = 2;
+            int n = 2;
+            int[] Odnomer = new int[m*n];
+            int k = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    Odnomer[k] = IntArr[i, j];
+                    k++;
+                }
+            }
+            return Odnomer;
+        }
+
+
+
         public int DeterminatArray()
         {
             int Deter = 0;
@@ -194,6 +204,7 @@ namespace ArrIntSpace
                 return Count;
             }
         }
+    #region Переопределенные методы
         //одновременное увеличение на 1 и уменьшение на 1
         //возвращаемый тип это тот, тип объекты которого хотим получить
         //то есть возвращаем объекты класса ArrInt
@@ -295,6 +306,53 @@ namespace ArrIntSpace
                 return false;
             }
         }
+        private int N = 4;
+    public static bool operator ==(ArrInt obj, ArrInt obj1)
+        {
+            int r1 = obj1.IntArr.GetLength(0);
+            int r2 = obj.IntArr.GetLength(1);
+            if (r1 == r2)
+            {
+                for (uint i = 0; i < obj1.Row_N; i++)
+                {
+                    for (uint j = 0; i < obj1.Col_M; i++)
+                        if (obj.IntArr[i, j] != obj1.IntArr[i, j])
+                        {
+                            return false;
+                        }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool operator !=(ArrInt obj, ArrInt obj1)
+        {
+           int r1 = obj1.Row_N;
+           int r2 = obj.Row_N;
+            if ( r1 == r2)
+            {
+                for (uint i = 0; i < obj1.Row_N; i++)
+                {
+                    for (uint j = 0; i < obj1.Col_M; i++)
+                        if (obj.IntArr[i, j] != obj1.IntArr[i, j])
+                        {
+                            return false;
+                        }
+                }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+
+        #endregion
     }
 
    
