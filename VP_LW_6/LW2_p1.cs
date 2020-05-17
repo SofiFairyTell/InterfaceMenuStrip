@@ -48,12 +48,15 @@ namespace ArrIntSpace
             }
 
         }
+
         public int ShowArray(int p)
         {
             return intArrOne[p];
         }
+
         public void InputArray(int data, int i)
         {
+           // this.intArrOne[i] = data;
             IntArrOne[i] = data;
         }
 
@@ -63,7 +66,7 @@ namespace ArrIntSpace
             for (int i = 0; i < n; i++)
             {
                     int Num = r2.Next(10);
-                    IntArrOne[i] = Num;
+                    intArrOne[i] = Num;
                 }
             }
         private uint n;// строки и столбцы
