@@ -330,9 +330,9 @@ namespace ArrIntSpace
         }
         public static bool operator !=(ArrInt obj, ArrInt obj1)
         {
-           int r1 = obj1.Row_N;
-           int r2 = obj.Row_N;
-            if ( r1 == r2)
+            int r1 = obj1.IntArr.GetLength(0);
+            int r2 = obj.IntArr.GetLength(1);
+            if (r1 == r2)
             {
                 for (uint i = 0; i < obj1.Row_N; i++)
                 {
