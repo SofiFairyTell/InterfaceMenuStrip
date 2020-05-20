@@ -124,39 +124,18 @@ namespace VP_LW_6
 
         private void СохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Stream myStream;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog.FilterIndex = 0;
-            saveFileDialog.RestoreDirectory = true;
-            if((myStream = saveFileDialog.OpenFile())!=null)
+            saveFileDialog1.ShowDialog();
+            if ((XML_FILE_NAME != null) && (XML_FILE_NAME != ""))
             {
-                using (StreamWriter wr = new StreamWriter(saveFileDialog.OpenFile()))
+                Type[] Types = new Type[1];
+                Types[0] = typeof(Array);
+                XmlSerializer serializer = new XmlSerializer(typeof(ArrayList), Types);
+                using (FileStream XMLFile = new FileStream(XML_FILE_NAME, FileMode.OpenOrCreate))
                 {
-                    wr.WriteLine(ShowBox.Text);
-                    wr.Close();
+                    serializer.Serialize(XMLFile, ArrInt1);
                 }
-                myStream.Close();
+                this.Text = XML_FILE_NAME;
             }
-            //saveFileDialog1.Filter = "Текстовый документ(*txt)|*.txt|Все файлы(*.*)|*.*";
-            //if(saveFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    StreamWriter streamWriter = new StreamWriter(saveFileDialog1.FileName);
-            //    streamWriter.WriteLine(ShowBox.Text);
-            //    streamWriter.Close();
-            //}
-
-            //if ((XML_FILE_NAME != null) && (XML_FILE_NAME != ""))
-            //{
-            //    Type[] Types = new Type[1];
-            //    Types[0] = typeof(Array);
-            //    XmlSerializer serializer = new XmlSerializer(typeof(ArrayList), Types);
-            //    using (FileStream XMLFile = new FileStream(XML_FILE_NAME, FileMode.OpenOrCreate))
-            //    {
-            //        serializer.Serialize(XMLFile, ArrInt1);
-            //    }
-            //    this.Text = XML_FILE_NAME;
-            //}
 
         }
 
@@ -170,6 +149,7 @@ namespace VP_LW_6
         {
             XML_FILE_NAME = openFileDialog1.FileName;
         }
+
         private void ВыгрузитьToolStripMenuItem_Click(object sender, EventArgs e)
             {
 
@@ -185,21 +165,7 @@ namespace VP_LW_6
         #region Sum
             private void ПоНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                DataGridViewInitialize();
-
-                int i = 0;
-                if (dataGridView2.ColumnCount < ArrInt1.Count)
-                {
-                    dataGridView2.ColumnCount = ArrInt1.Count;
-                }
-                foreach (ArrInt arr in ArrInt1)
-                {
-                    int selrow = dataGridView2.SelectedCells[i].RowIndex;
-                    // dataGridView2.Rows[i].Cells[0].Value = arr.Sum_Column(1);
-                    int Sum = arr.Sum_Column(selrow);
-                    MessageBox.Show(Convert.ToString(Sum));
-                    i++;
-                }
+        
             }
             private void ВыбранныхМассивовToolStripMenuItem_Click(object sender, EventArgs e)
             {
@@ -224,25 +190,7 @@ namespace VP_LW_6
                     i++;
                 }
             }
-            // public class ArrIntSort : IComparer
-            // {
-            //     int IComparer.Compare(object obj1, object obj2)
-            //     {
-            //         ArrInt r1 = new ArrInt();
-            //         r1 = (ArrInt)obj1;
-            //         ArrInt r2 = new ArrInt();
-            //         r2 = (ArrInt)obj2;
-            //         if (r1.DeterminatArray() > r2.DeterminatArray())
-            //         {
-            //             return 1;
-            //         }
-            //         else if (r1.DeterminatArray() < r2.DeterminatArray())
-            //         {
-            //             return -1;
-            //         }
-            //         else return 0;
-            //     }
-            // }
+
             public class ArrIntSort : IComparer
             {
                 int IComparer.Compare(object obj1, object obj2)
@@ -318,34 +266,7 @@ namespace VP_LW_6
 
             private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
             {
-            //FindForm ArrFind = new FindForm();
-            //ArrayList ArrFindList = new ArrayList();
-            //ArrInt1.Sort(new ArrIntSort());
-            //DialogResult result = ArrFind.ShowDialog(this);
-            //if (result == DialogResult.Cancel)
-            //{
-            //    return; 
-            //}
-            //ArrInt intArray = new ArrInt(n, m);
-            //    for (int i = 0; i < ArrFind.FindGrid.RowCount; i++)
-            //    {
-            //        for (int j = 0; j < ArrFind.FindGrid.ColumnCount; j++)
-            //        {
-            //            intArray.InputArray(Convert.ToInt16(ArrFind.FindGrid.Rows[j].Cells[i].Value), i, j);
-            //        }
-            //    }
-            //    ArrFindList.Add(intArray);
-            //    //ArrInt ArrFindNew = ArrFindList[0] as ArrInt;
-            //    int index = ArrInt1.BinarySearch(new ArrInt(intArray));
-            //    if (index == -1)
-            //        {
-            //            MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //        else
-            //        {
-            //            dataGridView2.ClearSelection();
-            //            dataGridView2.Rows[index].Selected = true;
-            //        }
+  
             }
 
         #endregion
