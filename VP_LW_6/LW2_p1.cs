@@ -115,7 +115,7 @@ namespace ArrIntSpace
                 for (int j = 0; j < m; j++)
                 {
 
-                    int Num = r2.Next(10);
+                    int Num = r2.Next(2);
                     IntArr[i, j] = Num;
                 }
             }

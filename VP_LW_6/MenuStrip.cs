@@ -17,19 +17,20 @@ namespace VP_LW_6
 {
     public partial class MenuStrip : Form
     {
-        static int n = 2;
-        static int m = 2;
-        private int Length = m * n;
-        private const string ERR = "Ошибка";
-        private const string ERR_SELECTED = "Выберите хотя бы одну строку";
-        private const string ERR_FIND = "Не найдено";
-        private const string ERR_LENGTH = " Длина больше или меньше 4";
-        private const string ERR_PARS = "Введены неверные данные";
-        private string XML_FILE_NAME = "";
-        private ArrayList ArrInt1 = new ArrayList();
-        ArrInt Arr = new ArrInt(n, m);
-
-       #region DataGridView Initializers
+        #region переменные
+            static int n = 2;
+            static int m = 2;
+            private int Length = m * n;
+            private const string ERR = "Ошибка";
+            private const string ERR_SELECTED = "Выберите хотя бы одну строку";
+            private const string ERR_FIND = "Не найдено";
+            private const string ERR_LENGTH = " Длина больше или меньше 4";
+            private const string ERR_PARS = "Введены неверные данные";
+            private string XML_FILE_NAME = "";
+            private ArrayList ArrInt1 = new ArrayList();
+            ArrInt Arr = new ArrInt(n, m);
+        #endregion
+        #region DataGridView Initializers
         private void DataGridViewInitialize() // Making our DataGrid
         {
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
@@ -55,7 +56,7 @@ namespace VP_LW_6
         }
         #endregion
         #region Work with Array
-        private void ViewArray()
+            private void ViewArray()
             {
                 int k = 0;
                 ShowBox.Clear();
@@ -85,7 +86,6 @@ namespace VP_LW_6
                 DataGridViewInitialize();
                 dataGridView2.ReadOnly = false;
             }
-
             private void AddButton_Click(object sender, EventArgs e)
             {
                 ArrInt Arr = new ArrInt(n, m);
@@ -117,64 +117,31 @@ namespace VP_LW_6
             {
                 ViewArray();
             }
-
-
-        private void СохранитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveFileDialog1.ShowDialog();
-            if ((XML_FILE_NAME != null) && (XML_FILE_NAME != ""))
+            private void СохранитьToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                Type[] Types = new Type[1];
-                Types[0] = typeof(ArrInt);
-                XmlSerializer serializer = new XmlSerializer(typeof(ArrayList), Types);
-                using (FileStream XMLFile = new FileStream(XML_FILE_NAME, FileMode.OpenOrCreate))
+               SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.DefaultExt = "*.txt";
+                saveFileDialog1.Filter = "Text files|*.txt";
+                if(saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFileDialog1.FileName.Length >0)
                 {
-                    serializer.Serialize(XMLFile, ArrInt1);
+                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, true))
+                    {
+                        sw.WriteLine(ShowBox.Text);
+                        sw.Close();
+                    }
                 }
-                this.Text = XML_FILE_NAME;
             }
-
-        }
-
-        private void saveFileDialog1_FileOk_1(object sender, CancelEventArgs e)
-        {
-            XML_FILE_NAME = saveFileDialog1.FileName + ".xml";
-        }
-
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            XML_FILE_NAME = openFileDialog1.FileName;
-        }
-
-        private void ВыгрузитьToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-            }
-
             private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
             {
                this.Close();
             }
         #endregion
         #region Work with data in Array
-
-        #region Sum
-            private void ПоНомеруСтолбцаToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-        
-            }
-            private void ВыбранныхМассивовToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-            }
-        #endregion
-
         #region Sort
             private void ПонаибольшемуколичествунулейToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 ArrInt1.Sort(new ArrIntSort());
-                int i = 0;
+                 int i = 0;
                 DataGridViewInitializeOdnomer();
                 dataGridView2.ReadOnly = true;
                 dataGridView2.RowCount = ArrInt1.Count;
@@ -208,7 +175,6 @@ namespace VP_LW_6
                 }
             }
         #endregion
-
         #region Find
         
         private void линейныйToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,6 +194,7 @@ namespace VP_LW_6
                     intArray.InputArray(Convert.ToInt16(ArrFind.FindGrid.Rows[j].Cells[i].Value), i, j);
                 }
             }
+            ShowBox.Text = "Действие: Поиск введенного массива"+"\n" + "Введенный массив:" + intArray.ToString()+"\n";
             ArrFindList.Add(intArray);
             //проверка на отсутствие данных в массиве , который ищем?
             MessageBox.Show("Данные для поиска введены", "Хорошо", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -250,9 +217,11 @@ namespace VP_LW_6
                 else
                 {
                     ViewArray();
+                    
                     dataGridView2.ClearSelection();
                     dataGridView2.Rows[index].Selected = true;
-                }
+                    ShowBox.Text += "Индекс найденного массива:" + index +"\n";
+            }
         }
 
         private void столбец1СMAXСуммойToolStripMenuItem_Click(object sender, EventArgs e)
@@ -267,7 +236,6 @@ namespace VP_LW_6
                 {
                     max = b;
                     index = i;
-
                 }
             }
             if (index == -1)
@@ -278,12 +246,35 @@ namespace VP_LW_6
             {
                 dataGridView2.ClearSelection();
                 dataGridView2.Rows[index].Selected = true;
-                ShowBox.Text += "Максимальная сумма в массиве:" + index + "="+ max + "\n";
+                ShowBox.Text +="Действие: Поиск массива, где сумма 1го столбца максимальна"+"\n"+"Максимальная сумма в массиве:" + index + " = "+ max + "\n";
             }
         }
         private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
             {
-  
+              ArrInt1.Sort(new ArrIntSort());
+              ViewArray();
+              int min = 0;
+              int max = ArrInt1.Count -1;
+
+            for (int i = 0; i < ArrInt1.Count; i++)
+            {
+               int mid = (min + max) / 2;
+                ArrInt arrMin = ArrInt1[min] as ArrInt;
+                ArrInt arrMid = ArrInt1[mid] as ArrInt;
+
+                if (arrMin.Zero_Element > arrMid.Zero_Element)
+                {
+                        max = mid - 1;
+                }                  
+                else
+                    if (arrMin.Zero_Element < arrMid.Zero_Element)
+                    min = mid + 1;
+                    else
+                    {
+                      dataGridView2.Rows[mid].Selected = true;
+                    }
+            }
+            ShowBox.Text += "Действие: Бинарный поиск по наибольшему количеству нулей" + "\n" + "Массив:" + dataGridView2.CurrentCell.RowIndex+ "\n";
             }
 
         #endregion
@@ -382,11 +373,6 @@ namespace VP_LW_6
             {
                 dataGridView2.AllowUserToAddRows = false;
             }
-        }
-
-        private void работаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
 

@@ -139,7 +139,6 @@
             this.выгрузитьToolStripMenuItem.Name = "выгрузитьToolStripMenuItem";
             this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.выгрузитьToolStripMenuItem.Text = "Выгрузить";
-            this.выгрузитьToolStripMenuItem.Click += new System.EventHandler(this.ВыгрузитьToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
@@ -157,7 +156,6 @@
             this.работаToolStripMenuItem.Name = "работаToolStripMenuItem";
             this.работаToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
             this.работаToolStripMenuItem.Text = "Действия над данными";
-            this.работаToolStripMenuItem.Click += new System.EventHandler(this.работаToolStripMenuItem_Click);
             // 
             // сортировкаToolStripMenuItem
             // 
@@ -286,12 +284,12 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk_1);
+
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+
             // 
             // столбец1СMAXСуммойToolStripMenuItem
             // 
