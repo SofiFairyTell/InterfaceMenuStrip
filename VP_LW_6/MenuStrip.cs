@@ -29,36 +29,33 @@ namespace VP_LW_6
         private ArrayList ArrInt1 = new ArrayList();
         ArrInt Arr = new ArrInt(n, m);
 
-        #region DataGridView Initializers
-            private void DataGridViewInitialize() // Making our DataGrid
-            {
-                DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
-                columnStyle.BackColor = Color.Azure;
-                columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-                dataGridView2.Columns.Add("A1", "Столбец 1");
-                dataGridView2.Columns.Add("A2", "Столбец 2");
-                dataGridView2.Rows.Add(2);
-                dataGridView2.AllowUserToAddRows = false;
-            }
-
-            private void DataGridViewInitializeOdnomer() // Making our DataGrid
-            {
-                DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
-                columnStyle.BackColor = Color.Azure;
-                columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-                dataGridView2.Rows.Clear();
-                dataGridView2.Columns.Clear();
-                dataGridView2.Columns.Add("A00", "ЯЧ00");
-                dataGridView2.Columns.Add("A01", "ЯЧ01");
-                dataGridView2.Columns.Add("A10", "ЯЧ10");
-                dataGridView2.Columns.Add("A11", "ЯЧ11");
-                dataGridView2.AllowUserToAddRows = false;
-            }
-
+       #region DataGridView Initializers
+        private void DataGridViewInitialize() // Making our DataGrid
+        {
+            DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
+            columnStyle.BackColor = Color.Azure;
+            columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            dataGridView2.Columns.Add("A1", "Столбец 1");
+            dataGridView2.Columns.Add("A2", "Столбец 2");
+            dataGridView2.Rows.Add(2);
+            dataGridView2.AllowUserToAddRows = false;
+        }
+        private void DataGridViewInitializeOdnomer() // Making our DataGrid
+        {
+            DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
+            columnStyle.BackColor = Color.Azure;
+            columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
+            dataGridView2.Rows.Clear();
+            dataGridView2.Columns.Clear();
+            dataGridView2.Columns.Add("A00", "ЯЧ00");
+            dataGridView2.Columns.Add("A01", "ЯЧ01");
+            dataGridView2.Columns.Add("A10", "ЯЧ10");
+            dataGridView2.Columns.Add("A11", "ЯЧ11");
+            dataGridView2.AllowUserToAddRows = false;
+        }
         #endregion
-
         #region Work with Array
-            private void ViewArray()
+        private void ViewArray()
             {
                 int k = 0;
                 ShowBox.Clear();
@@ -128,7 +125,7 @@ namespace VP_LW_6
             if ((XML_FILE_NAME != null) && (XML_FILE_NAME != ""))
             {
                 Type[] Types = new Type[1];
-                Types[0] = typeof(Array);
+                Types[0] = typeof(ArrInt);
                 XmlSerializer serializer = new XmlSerializer(typeof(ArrayList), Types);
                 using (FileStream XMLFile = new FileStream(XML_FILE_NAME, FileMode.OpenOrCreate))
                 {
@@ -157,7 +154,7 @@ namespace VP_LW_6
 
             private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
             {
-
+               this.Close();
             }
         #endregion
         #region Work with data in Array
@@ -242,14 +239,9 @@ namespace VP_LW_6
                     ArrInt ArrFindNew = ArrFindList[0] as ArrInt;
                      if (ArrFindNew == ArrNew)
                       {
-                        MessageBox.Show("Хорошо");
                         index = i;
                         break;
                        }
-                    else
-                    {
-                        MessageBox.Show("Not yet");
-                    }
                 }
                if (index == -1)
                 {
@@ -262,9 +254,34 @@ namespace VP_LW_6
                     dataGridView2.Rows[index].Selected = true;
                 }
         }
-       
 
-            private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void столбец1СMAXСуммойToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int max = -1;
+            int index = -1;
+            for (int i = 0; i < ArrInt1.Count; i++)
+            {
+                ArrInt array = ArrInt1[i] as ArrInt;
+                int b = array.Sum_Column(0);
+                if (b > max)
+                {
+                    max = b;
+                    index = i;
+
+                }
+            }
+            if (index == -1)
+            {
+                MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                dataGridView2.ClearSelection();
+                dataGridView2.Rows[index].Selected = true;
+                ShowBox.Text += "Максимальная сумма в массиве:" + index + "="+ max + "\n";
+            }
+        }
+        private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
             {
   
             }
@@ -347,7 +364,6 @@ namespace VP_LW_6
         public MenuStrip()
         {
             InitializeComponent();
-            string Arr_file;        
         }
         
         private void MenuStrip_Load(object sender, EventArgs e)
