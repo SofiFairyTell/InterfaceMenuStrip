@@ -26,7 +26,11 @@ namespace VP_LW_6
             private const string ERR_FIND = "Не найдено";
             private const string ERR_LENGTH = " Длина больше или меньше 4";
             private const string ERR_PARS = "Введены неверные данные";
-            private string XML_FILE_NAME = "";
+            private const string st1 = "Добро пожаловaть в программу!\n 1. Для создания, удаления, просмотра и сохранения данных используется раздел 'Работа с массивом'\n";
+            private const string st2 = "2. Для изменения данных, для поиска, для сортировки используется раздел 'Действия над данными'\n";
+            private const string st3 = "3. Программа работает с массивами размером 2х2 ";
+            private const string MESS_ABOUT = st1 + st2 + st3;
+          //  private string XML_FILE_NAME = "";
             private ArrayList ArrInt1 = new ArrayList();
             ArrInt Arr = new ArrInt(n, m);
         #endregion
@@ -255,7 +259,6 @@ namespace VP_LW_6
               ViewArray();
               int min = 0;
               int max = ArrInt1.Count -1;
-
             for (int i = 0; i < ArrInt1.Count; i++)
             {
                int mid = (min + max) / 2;
@@ -364,7 +367,7 @@ namespace VP_LW_6
                
         private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Добро пожаловaть в программу!","О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(MESS_ABOUT,"О программе" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dataGridView2_AllowUserToAddRowsChanged(object sender, EventArgs e)
