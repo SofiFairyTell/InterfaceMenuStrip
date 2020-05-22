@@ -45,6 +45,7 @@
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.линейныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.бинарныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.столбец1СMAXСуммойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменениеЭлементовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.увеличитьВсеНа1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.уменьшитьВсеНа1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.столбец1СMAXСуммойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -185,16 +185,23 @@
             // линейныйToolStripMenuItem
             // 
             this.линейныйToolStripMenuItem.Name = "линейныйToolStripMenuItem";
-            this.линейныйToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.линейныйToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.линейныйToolStripMenuItem.Text = "Линейный";
             this.линейныйToolStripMenuItem.Click += new System.EventHandler(this.линейныйToolStripMenuItem_Click);
             // 
             // бинарныйToolStripMenuItem
             // 
             this.бинарныйToolStripMenuItem.Name = "бинарныйToolStripMenuItem";
-            this.бинарныйToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.бинарныйToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.бинарныйToolStripMenuItem.Text = "Бинарный";
             this.бинарныйToolStripMenuItem.Click += new System.EventHandler(this.бинарныйToolStripMenuItem_Click);
+            // 
+            // столбец1СMAXСуммойToolStripMenuItem
+            // 
+            this.столбец1СMAXСуммойToolStripMenuItem.Name = "столбец1СMAXСуммойToolStripMenuItem";
+            this.столбец1СMAXСуммойToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.столбец1СMAXСуммойToolStripMenuItem.Text = "Столбец 1 с MAX суммой";
+            this.столбец1СMAXСуммойToolStripMenuItem.Click += new System.EventHandler(this.столбец1СMAXСуммойToolStripMenuItem_Click);
             // 
             // изменениеЭлементовToolStripMenuItem
             // 
@@ -270,6 +277,7 @@
             this.ShowBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowBox.Multiline = true;
             this.ShowBox.Name = "ShowBox";
+            this.ShowBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ShowBox.Size = new System.Drawing.Size(350, 98);
             this.ShowBox.TabIndex = 3;
             // 
@@ -282,21 +290,9 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Результаты";
             // 
-            // saveFileDialog1
-            // 
-
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-
-            // 
-            // столбец1СMAXСуммойToolStripMenuItem
-            // 
-            this.столбец1СMAXСуммойToolStripMenuItem.Name = "столбец1СMAXСуммойToolStripMenuItem";
-            this.столбец1СMAXСуммойToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
-            this.столбец1СMAXСуммойToolStripMenuItem.Text = "Столбец 1 с MAX суммой";
-            this.столбец1СMAXСуммойToolStripMenuItem.Click += new System.EventHandler(this.столбец1СMAXСуммойToolStripMenuItem_Click);
             // 
             // MenuStrip
             // 
