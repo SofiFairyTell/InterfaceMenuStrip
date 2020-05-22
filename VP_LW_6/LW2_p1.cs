@@ -339,7 +339,7 @@ namespace ArrIntSpace
                     for (uint j = 0; i < obj1.Col_M; i++)
                         if (obj.IntArr[i, j] != obj1.IntArr[i, j])
                         {
-                            return false;
+                            return true;
                         }
                 }
                 return false;

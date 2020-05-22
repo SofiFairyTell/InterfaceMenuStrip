@@ -215,20 +215,26 @@ namespace VP_LW_6
                       {
                         index = i;
                         break;
-                       }
+                     }
+                     //else
+                     //   {
+                     //       index = i;
+                            
+                     //   }
                 }
-               if (index == -1)
+                if (index != -1)
                 {
-                    MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ViewArray();
+                dataGridView2.ClearSelection();
+                dataGridView2.Rows[index].Selected = true;
+                ShowBox.Text += "Индекс найденного массива:" + index + "\n";
+               
                 }
                 else
                 {
-                    ViewArray();
-                    
-                    dataGridView2.ClearSelection();
-                    dataGridView2.Rows[index].Selected = true;
-                    ShowBox.Text += "Индекс найденного массива:" + index +"\n";
-            }
+
+                    MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);   
+                }
         }
 
         private void столбец1СMAXСуммойToolStripMenuItem_Click(object sender, EventArgs e)
