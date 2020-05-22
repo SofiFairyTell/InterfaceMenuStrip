@@ -12,7 +12,7 @@ namespace ArrIntSpace
     {
         int Sum_Column(int j);
         int ShowArray(int j, int i);
-        void InputArray();
+        void InputArray(int k);
         void InputArray(int data, int i, int j);
         int DeterminatArray();
     }
@@ -107,7 +107,7 @@ namespace ArrIntSpace
         #endregion
 
         //ввод массива
-        public void InputArray()
+        public void InputArray(int k)
         {
             Random r2 = new Random();
             for (int i = 0; i < n; i++)
@@ -115,7 +115,7 @@ namespace ArrIntSpace
                 for (int j = 0; j < m; j++)
                 {
 
-                    int Num = r2.Next(2);
+                    int Num = r2.Next(k);
                     IntArr[i, j] = Num;
                 }
             }

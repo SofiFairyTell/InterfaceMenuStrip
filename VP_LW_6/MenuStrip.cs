@@ -111,11 +111,14 @@ namespace VP_LW_6
             {
                 ArrInt Arr = new ArrInt(n, m);
                 ArrInt Arr2 = new ArrInt(n, m);
-                Arr.InputArray();
-                Arr2.InputArray();
+                ArrInt Arr3 = new ArrInt(n, m);
+                Arr.InputArray(4);
+                Arr2.InputArray(1);
+                Arr3.InputArray(2);
                 this.ArrInt1.Add(Arr);
                 this.ArrInt1.Add(Arr2);
-                MessageBox.Show("Список из 2-х массивов со случайными числами создан");
+                this.ArrInt1.Add(Arr3);
+            MessageBox.Show("Список из 3-х массивов со случайными числами создан");
             }
             private void ПросмотретьToolStripMenuItem_Click(object sender, EventArgs e)
             {
