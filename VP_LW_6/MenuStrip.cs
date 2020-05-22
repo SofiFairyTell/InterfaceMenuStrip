@@ -216,17 +216,18 @@ namespace VP_LW_6
                         index = i;
                         break;
                      }
-                     //else
-                     //   {
-                     //       index = i;
-                            
-                     //   }
+                     else
+                        {
+                        index = -1;
+                         //MessageBox.Show(ERR_FIND, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                 }
                 if (index != -1)
                 {
                 ViewArray();
                 dataGridView2.ClearSelection();
                 dataGridView2.Rows[index].Selected = true;
+                ShowBox.Text = "Действие: Поиск введенного массива" + "\n" + "Введенный массив:" + intArray.ToString() + "\n";
                 ShowBox.Text += "Индекс найденного массива:" + index + "\n";
                
                 }

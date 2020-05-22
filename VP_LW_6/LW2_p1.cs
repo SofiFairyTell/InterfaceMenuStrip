@@ -310,19 +310,19 @@ namespace ArrIntSpace
     public static bool operator ==(ArrInt obj, ArrInt obj1)
         {
             int r1 = obj1.IntArr.GetLength(0);
-            int r2 = obj.IntArr.GetLength(1);
+            int r2 = obj.IntArr.GetLength(0);
             if (r1 == r2)
             {
                 for (uint i = 0; i < obj1.Row_N; i++)
                 {
-                    for (uint j = 0; i < obj1.Col_M; i++)
+                    for (uint j = 0; j < obj1.Col_M; j++)
                         if (obj.IntArr[i, j] != obj1.IntArr[i, j])
                         {
                             return false;
                         }
                 }
                 return true;
-            }
+        }
             else
             {
                 return false;
@@ -336,8 +336,8 @@ namespace ArrIntSpace
             {
                 for (uint i = 0; i < obj1.Row_N; i++)
                 {
-                    for (uint j = 0; i < obj1.Col_M; i++)
-                        if (obj.IntArr[i, j] != obj1.IntArr[i, j])
+                    for (uint j = 0; j < obj1.Col_M; j++)
+                        if (obj.IntArr[i,j] != obj1.IntArr[i,j])
                         {
                             return true;
                         }
