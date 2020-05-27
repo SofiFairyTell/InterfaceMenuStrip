@@ -21,7 +21,6 @@ namespace ArrIntSpace
     public class ArrInt : IArOperation
     {
         private  int[,] IntArr; //двумерный массив
-        private int[] IntArrOne; 
         private int n, m;// строки и столбцы
         private uint k;
         #region свойства для строк и столбцов
@@ -98,13 +97,7 @@ namespace ArrIntSpace
             }          
             }
             
-            // public ArrInt(int[] IntArray)
-            // {
-            //     k = (uint)IntArray.Length;
-            //     this.IntArrOne= IntArray;      
-            // }
-
-        #endregion
+         #endregion
 
         //ввод массива
         public void InputArray(int k)
@@ -160,15 +153,16 @@ namespace ArrIntSpace
 
         public void InputArray(string line)
         {
-           string[] s = line.Split(' ');
-           for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                   // Console.Write("Элемент[{0}][{1}]", i, j);
-                    IntArr[i, j] = int.Parse(s[i]);
-                }
-            }
+            string[] s = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int k = 0;
+                         for (int i = 0; i < n; i++)
+                           {
+                                for (int j = 0; j < m; j++)
+                                {
+                                IntArr[i, j] = int.Parse(s[k]);
+                                k++;
+                                }
+                            }
         }
 
 
@@ -278,7 +272,7 @@ namespace ArrIntSpace
             {
                 for (int j = 0; j < this.m; j++)
                 {
-                    sb.Append($"№{i}:{j} = {this.IntArr[i, j]} ");//добавляет сведения в конец текущего объекта
+                    sb.Append($"{this.IntArr[i, j]} ");//добавляет сведения в конец текущего объекта
                 }
 
                 //sb.AppendLine(); //вернуть если надо чтобы построчно выводилось
@@ -318,7 +312,6 @@ namespace ArrIntSpace
                 return false;
             }
         }
-        private int N = 4;
     public static bool operator ==(ArrInt obj, ArrInt obj1)
         {
             int r1 = obj1.IntArr.GetLength(0);

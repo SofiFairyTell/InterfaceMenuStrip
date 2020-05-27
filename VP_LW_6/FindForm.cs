@@ -18,7 +18,6 @@ namespace VP_LW_6
             DataGridViewCellStyle columnStyle = new DataGridViewCellStyle(); // Defining new cell style
             columnStyle.BackColor = Color.Azure;
             columnStyle.Font = new Font("Arial", 12, FontStyle.Italic);
-            int MaxRows = 3;
             FindGrid.Columns.Add("A1", "Столбец 1");
             FindGrid.Columns.Add("A2", "Столбец 2");
             FindGrid.Rows.Add(2);

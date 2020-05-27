@@ -57,6 +57,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ShowBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +81,7 @@
             this.ввестиСКлавиатурыToolStripMenuItem,
             this.AвтоматическиToolStripMenuItem});
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.создатьToolStripMenuItem.Text = "Создать";
             // 
             // ввестиСКлавиатурыToolStripMenuItem
@@ -103,7 +104,7 @@
             this.очиститьВсеToolStripMenuItem,
             this.выбранныйМассивToolStripMenuItem});
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // очиститьВсеToolStripMenuItem
@@ -123,28 +124,28 @@
             // просмотретьToolStripMenuItem
             // 
             this.просмотретьToolStripMenuItem.Name = "просмотретьToolStripMenuItem";
-            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.просмотретьToolStripMenuItem.Text = "Просмотреть";
             this.просмотретьToolStripMenuItem.Click += new System.EventHandler(this.ПросмотретьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
             // 
             // выгрузитьToolStripMenuItem
             // 
             this.выгрузитьToolStripMenuItem.Name = "выгрузитьToolStripMenuItem";
-            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.выгрузитьToolStripMenuItem.Text = "Загрузить";
             this.выгрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
             // 
@@ -263,7 +264,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(31, 299);
+            this.AddButton.Location = new System.Drawing.Point(31, 279);
             this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(228, 44);
@@ -274,18 +275,19 @@
             // 
             // ShowBox
             // 
-            this.ShowBox.Location = new System.Drawing.Point(428, 276);
+            this.ShowBox.Location = new System.Drawing.Point(565, 279);
             this.ShowBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowBox.Multiline = true;
             this.ShowBox.Name = "ShowBox";
             this.ShowBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ShowBox.Size = new System.Drawing.Size(350, 98);
+            this.ShowBox.Size = new System.Drawing.Size(213, 161);
             this.ShowBox.TabIndex = 3;
+            this.ShowBox.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(336, 299);
+            this.label1.Location = new System.Drawing.Point(278, 279);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 17);
             this.label1.TabIndex = 4;
@@ -295,11 +297,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // ShowBox1
+            // 
+            this.ShowBox1.Location = new System.Drawing.Point(371, 279);
+            this.ShowBox1.Multiline = true;
+            this.ShowBox1.Name = "ShowBox1";
+            this.ShowBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ShowBox1.Size = new System.Drawing.Size(407, 151);
+            this.ShowBox1.TabIndex = 5;
+            // 
             // MenuStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 385);
+            this.ClientSize = new System.Drawing.Size(800, 442);
+            this.Controls.Add(this.ShowBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ShowBox);
             this.Controls.Add(this.AddButton);
@@ -351,6 +363,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem столбец1СMAXСуммойToolStripMenuItem;
+        private System.Windows.Forms.TextBox ShowBox1;
     }
 }
 

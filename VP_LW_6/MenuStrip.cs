@@ -66,11 +66,11 @@ namespace VP_LW_6
                 ShowBox.Clear();
                 foreach (ArrInt ar in ArrInt1)
                 {
-                    ShowBox.Text += "Массив:" + k + ar.ToString() + "\n";
+                    // ShowBox.Text += "Массив:" + k + ar.ToString() + "\n";
+                    ShowBox.Text += ar.ToString() + "\n";
                     k++;
                 }
                 int i = 0;
-
                 DataGridViewInitializeOdnomer();
                 dataGridView2.ReadOnly = true;
                 dataGridView2.RowCount = ArrInt1.Count;
@@ -131,7 +131,7 @@ namespace VP_LW_6
                 saveFileDialog1.Filter = "Text files|*.txt";
                 if(saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFileDialog1.FileName.Length >0)
                 {
-                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, true))
+                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, false))
                     {
                         sw.WriteLine(ShowBox.Text);
                         sw.Close();
@@ -144,27 +144,31 @@ namespace VP_LW_6
             }
             private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
             {
-            var filePath = string.Empty;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = "*.txt";
-            openFileDialog1.Filter = "Text files|*.txt";
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                filePath = openFileDialog.FileName;
-                var fileStream = openFileDialog.OpenFile();
-                StreamReader file = new StreamReader(fileStream);
-                string s = file.ReadLine();
-                ArrInt Arr = new ArrInt(n, m);
-                Arr.InputArray(s);
-                ArrInt1.Add(Arr);
-                MessageBox.Show("Ваш массив добавлен");
+                var filePath = string.Empty;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.DefaultExt = "*.txt";
+                openFileDialog1.Filter = "Text files|*.txt";
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                    var fileStream = openFileDialog.OpenFile();
+                    using (StreamReader file = new StreamReader(fileStream))
+                    {
+                        string line;
+                        while ((line = file.ReadLine()) != null)
+                        {
+                            ArrInt Arr = new ArrInt(n, m);
+                            if (line != "")
+                            {
+                                Arr.InputArray(line);
+                                this.ArrInt1.Add(Arr);
+                            }
+                        }
+                    }
+                }
+                          
+                    MessageBox.Show("Ваш массив добавлен");
             }
-            //StreamReader file = new StreamReader(@"C:\Users\Kurbatova\source\fil.txt");
-            //    string s = file.ReadLine();
-            //    ArrInt Arr = new ArrInt(n, m);
-            //    Arr.InputArray(s);
-            //    ArrInt1.Add(Arr);
-        }
 
         #endregion
         #region Work with data in Array
@@ -225,7 +229,7 @@ namespace VP_LW_6
                     intArray.InputArray(Convert.ToInt16(ArrFind.FindGrid.Rows[j].Cells[i].Value), i, j);
                 }
             }
-            ShowBox.Text = "Действие: Поиск введенного массива"+"\n" + "Введенный массив:" + intArray.ToString()+"\n";
+            ShowBox1.Text = "\nДействие: Поиск введенного массива"+"\n" + "Введенный массив:" + intArray.ToString()+"\n";
             ArrFindList.Add(intArray);
             //проверка на отсутствие данных в массиве , который ищем?
             MessageBox.Show("Данные для поиска введены", "Хорошо", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -251,8 +255,8 @@ namespace VP_LW_6
                 ViewArray();
                 dataGridView2.ClearSelection();
                 dataGridView2.Rows[index].Selected = true;
-                ShowBox.Text = "Действие: Поиск введенного массива" + "\n" + "Введенный массив:" + intArray.ToString() + "\n";
-                ShowBox.Text += "Индекс найденного массива:" + index + "\n";
+                ShowBox1.Text += "\nДействие: Поиск введенного массива" + "\n" + "Введенный массив:" + intArray.ToString() + "\n";
+                ShowBox1.Text += "\nИндекс найденного массива:" + index + "\n";
                
                 }
                 else
@@ -284,7 +288,7 @@ namespace VP_LW_6
             {
                 dataGridView2.ClearSelection();
                 dataGridView2.Rows[index].Selected = true;
-                ShowBox.Text +="Действие: Поиск массива, где сумма 1го столбца максимальна"+"\n"+"Максимальная сумма в массиве:" + index + " = "+ max + "\n";
+                ShowBox1.Text +="\nДействие: Поиск массива, где сумма 1го столбца максимальна"+"\nМаксимальная сумма в массиве:" + index + " = "+ max + "\n";
             }
         }
         private void бинарныйToolStripMenuItem_Click(object sender, EventArgs e)
@@ -311,7 +315,7 @@ namespace VP_LW_6
                       dataGridView2.Rows[mid].Selected = true;
                     }
             }
-            ShowBox.Text += "Действие: Бинарный поиск по наибольшему количеству нулей" + "\n" + "Массив:" + dataGridView2.CurrentCell.RowIndex+ "\n";
+            ShowBox1.Text += "\nДействие: Бинарный поиск по наибольшему количеству нулей" + "\n" + "Массив:" + dataGridView2.CurrentCell.RowIndex+ "\n";
             }
 
         #endregion
