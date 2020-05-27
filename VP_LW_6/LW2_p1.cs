@@ -158,6 +158,18 @@ namespace ArrIntSpace
             return Odnomer;
         }
 
+        public void InputArray(string line)
+        {
+           string[] s = line.Split(' ');
+           for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                   // Console.Write("Элемент[{0}][{1}]", i, j);
+                    IntArr[i, j] = int.Parse(s[i]);
+                }
+            }
+        }
 
 
         public int DeterminatArray()

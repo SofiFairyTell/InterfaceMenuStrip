@@ -142,10 +142,34 @@ namespace VP_LW_6
             {
                this.Close();
             }
+            private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+            var filePath = string.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.txt";
+            openFileDialog1.Filter = "Text files|*.txt";
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+                var fileStream = openFileDialog.OpenFile();
+                StreamReader file = new StreamReader(fileStream);
+                string s = file.ReadLine();
+                ArrInt Arr = new ArrInt(n, m);
+                Arr.InputArray(s);
+                ArrInt1.Add(Arr);
+                MessageBox.Show("Ваш массив добавлен");
+            }
+            //StreamReader file = new StreamReader(@"C:\Users\Kurbatova\source\fil.txt");
+            //    string s = file.ReadLine();
+            //    ArrInt Arr = new ArrInt(n, m);
+            //    Arr.InputArray(s);
+            //    ArrInt1.Add(Arr);
+        }
+
         #endregion
         #region Work with data in Array
         #region Sort
-            private void ПонаибольшемуколичествунулейToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПонаибольшемуколичествунулейToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 ArrInt1.Sort(new ArrIntSort());
                  int i = 0;
